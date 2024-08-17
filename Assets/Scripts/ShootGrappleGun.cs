@@ -22,10 +22,13 @@ public class ShootGrappleGun : MonoBehaviour
     [SerializeField]
     private int rayCount = 36;
 
+    [SerializeField]
+    private int ropeSegments = 10; // Number of segments for the rope
+
     void Start()
     {
         lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.positionCount = 2;
+        lineRenderer.positionCount = ropeSegments;
         lineRenderer.startWidth = 0.05f;
         lineRenderer.endWidth = 0.05f;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
@@ -51,8 +54,7 @@ public class ShootGrappleGun : MonoBehaviour
 
         if (joint.enabled)
         {
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, grapplePoint.position);
+            DrawRope();
         }
     }
 
@@ -98,6 +100,20 @@ public class ShootGrappleGun : MonoBehaviour
     {
         joint.enabled = false;
         lineRenderer.enabled = false;
+    }
+
+    void DrawRope()
+    {
+        // Set the start point of the rope
+        lineRenderer.SetPosition(0, firePoint.position);
+
+        // Calculate positions for each segment of the rope
+        for (int i = 1; i < ropeSegments; i++)
+        {
+            float t = i / (float)(ropeSegments - 1);
+            Vector3 position = Vector3.Lerp(firePoint.position, grapplePoint.position, t);
+            lineRenderer.SetPosition(i, position);
+        }
     }
 
     void OnDrawGizmosSelected()
