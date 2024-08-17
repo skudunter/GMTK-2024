@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         float rotationInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.forward, -rotationInput * rotationSpeed * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.up * thrustPower * Time.deltaTime, ForceMode2D.Impulse);
         }
