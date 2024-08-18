@@ -15,7 +15,6 @@ public class AsteroidSpawner : MonoBehaviour
 
     void Start()
     {
-        GUI.init();
         // Convert screen size to world units
         screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
         screenHeight = Camera.main.orthographicSize;
@@ -23,8 +22,6 @@ public class AsteroidSpawner : MonoBehaviour
         // Start the spawning process
         StartCoroutine(SpawnAsteroids());
     }
-
-    void Update() { }
 
     IEnumerator SpawnAsteroids()
     {
@@ -37,8 +34,6 @@ public class AsteroidSpawner : MonoBehaviour
 
     void SpawnAsteroid()
     {
-        // Determine a random edge to spawn from
-        GUI.updateScore(1);
         int edge = Random.Range(0, 4);
         Vector2 spawnPosition = Vector2.zero;
 

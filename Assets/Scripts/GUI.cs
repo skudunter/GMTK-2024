@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public static class GUI 
+public static class GUI
 {
-    private static GameObject scoreText ;
+    private static GameObject scoreText = GameObject.Find("ScoreText");
+
     public static void updateScore(float score)
     {
-        scoreText = GameObject.Find("ScoreText");
-        scoreText.GetComponent<TextMeshPro>().text = score.ToString();
+        if (!scoreText)
+        {
+            Debug.LogError("Score text not initialized lol");
+            return;
+        }
+        scoreText.GetComponent<TextMeshProUGUI>().text = score.ToString();
     }
-    public static void init()
-    {
-    }
+
 }

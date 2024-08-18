@@ -20,7 +20,7 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //TODO add gameover sequence
-            Destroy(other.gameObject);
+            GameManager.RestartGame();
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
         {
