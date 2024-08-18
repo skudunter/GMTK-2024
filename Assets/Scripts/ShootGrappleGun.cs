@@ -86,8 +86,8 @@ public class ShootGrappleGun : MonoBehaviour
         {
             grapplePoint = closestHit.transform;
             joint.connectedBody = closestHit.rigidbody;
-            joint.autoConfigureDistance = false;
-            joint.distance = closestDistance;
+            joint.autoConfigureDistance = true;
+            // joint.distance = closestDistance;
             joint.frequency = frequency; 
             joint.dampingRatio = dampingRatio;
             joint.enabled = true;
