@@ -431,7 +431,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 202693395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aa7987939286e4e953fba04dfcda99, type: 3}
+  m_Script: {fileID: 11500000, guid: d6c830f4d24d0be489c0fca0035f1d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &237482487
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 237482492}
   - component: {fileID: 237482491}
   - component: {fileID: 237482490}
-  - component: {fileID: 237482489}
+  - component: {fileID: 237482493}
   m_Layer: 7
   m_Name: Asteroid (4)
   m_TagString: Gravitable
@@ -469,18 +469,6 @@ Transform:
   m_Father: {fileID: 1349147789}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &237482489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237482487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aa7987939286e4e953fba04dfcda99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &237482490
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -595,6 +583,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &237482493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237482487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c830f4d24d0be489c0fca0035f1d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &305454680
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 305454685}
   - component: {fileID: 305454684}
   - component: {fileID: 305454683}
-  - component: {fileID: 305454682}
+  - component: {fileID: 305454686}
   m_Layer: 7
   m_Name: Asteroid (5)
   m_TagString: Gravitable
@@ -630,18 +630,6 @@ Transform:
   m_Father: {fileID: 1349147789}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &305454682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305454680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aa7987939286e4e953fba04dfcda99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &305454683
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -756,6 +744,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &305454686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305454680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c830f4d24d0be489c0fca0035f1d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: 799724505}
   - component: {fileID: 799724504}
   - component: {fileID: 799724503}
-  - component: {fileID: 799724502}
+  - component: {fileID: 799724506}
   m_Layer: 7
   m_Name: Asteroid (3)
   m_TagString: Gravitable
@@ -884,18 +884,6 @@ Transform:
   m_Father: {fileID: 1349147789}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &799724502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799724500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aa7987939286e4e953fba04dfcda99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &799724503
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1010,6 +998,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &799724506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799724500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c830f4d24d0be489c0fca0035f1d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &818607952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1216,7 @@ GameObject:
   - component: {fileID: 1079837675}
   - component: {fileID: 1079837674}
   - component: {fileID: 1079837673}
-  - component: {fileID: 1079837672}
+  - component: {fileID: 1079837676}
   m_Layer: 7
   m_Name: Asteroid (1)
   m_TagString: Gravitable
@@ -1239,18 +1239,6 @@ Transform:
   m_Father: {fileID: 1349147789}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1079837672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079837670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aa7987939286e4e953fba04dfcda99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &1079837673
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1365,6 +1353,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1079837676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079837670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c830f4d24d0be489c0fca0035f1d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1325375361
 Mesh:
   m_ObjectHideFlags: 0
@@ -1699,7 +1699,7 @@ GameObject:
   - component: {fileID: 1957676346}
   - component: {fileID: 1957676345}
   - component: {fileID: 1957676344}
-  - component: {fileID: 1957676343}
+  - component: {fileID: 1957676347}
   m_Layer: 7
   m_Name: Asteroid (2)
   m_TagString: Gravitable
@@ -1722,18 +1722,6 @@ Transform:
   m_Father: {fileID: 1349147789}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1957676343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957676341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aa7987939286e4e953fba04dfcda99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &1957676344
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1848,6 +1836,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1957676347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957676341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c830f4d24d0be489c0fca0035f1d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1984616675
 GameObject:
   m_ObjectHideFlags: 0
