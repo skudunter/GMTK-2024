@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.up * thrustPower * Time.deltaTime, ForceMode2D.Impulse);
+        }else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(-transform.up * thrustPower/3 * Time.deltaTime, ForceMode2D.Impulse);
         }
 
         rb.velocity *= drag;
