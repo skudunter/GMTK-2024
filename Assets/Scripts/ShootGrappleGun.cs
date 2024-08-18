@@ -95,6 +95,11 @@ public class ShootGrappleGun : MonoBehaviour
             {
                 joint.autoConfigureDistance = true;
             }
+            WasInteracttedWith wasInteracttedWith = closestHit.collider.GetComponent<WasInteracttedWith>();
+            if (wasInteracttedWith != null)
+            {
+                wasInteracttedWith.SetWasInteracttedWith(true);
+            }
             grapplePoint = closestHit.transform;
             joint.connectedBody = closestHit.rigidbody;
             joint.frequency = frequency;

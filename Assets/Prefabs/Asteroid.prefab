@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5122977620191434353}
   - component: {fileID: 4615731351574076025}
   - component: {fileID: 129472294238827693}
+  - component: {fileID: 7601085905321431042}
   m_Layer: 7
   m_Name: Asteroid
   m_TagString: Gravitable
@@ -159,5 +160,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6c830f4d24d0be489c0fca0035f1d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7601085905321431042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171721415181232022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d8d4f7b0fd6d7408b31005e50f9976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

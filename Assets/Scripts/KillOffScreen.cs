@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class KillOffScreen : MonoBehaviour
 {
-   // TODO madybe incremetn score here
+   private WasInteracttedWith wasInteracttedWith;
+    void Start()
+    {
+        wasInteracttedWith = GetComponent<WasInteracttedWith>();
+    }
 
     void Update()
     {
@@ -13,6 +17,10 @@ public class KillOffScreen : MonoBehaviour
         );
         if (transform.position.x > screenBounds.x + 1 || transform.position.x < -screenBounds.x -1 || transform.position.y > screenBounds.y + 1 || transform.position.y < -screenBounds.y -1)
         {
+            if (wasInteracttedWith.GetWasInteracttedWith())
+            {
+                GameManager.AddScore(1);
+            }
             Destroy(gameObject);
         }   
     }
