@@ -11,7 +11,7 @@ public class KillOffScreen : MonoBehaviour
         Vector3 screenBounds = Camera.main.ScreenToWorldPoint(
             new Vector3(Screen.width, Screen.height, 0)
         );
-        if (transform.position.x > screenBounds.x - 2 || transform.position.x < -screenBounds.x -2 || transform.position.y > screenBounds.y + 2 || transform.position.y < -screenBounds.y -2)
+        if (transform.position.x > screenBounds.x + 1 || transform.position.x < -screenBounds.x -1 || transform.position.y > screenBounds.y + 1 || transform.position.y < -screenBounds.y -1)
         {
             Destroy(gameObject);
         }   
