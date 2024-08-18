@@ -15,21 +15,21 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.drag = 0f; 
-        rb.angularDrag = 0f; 
+        rb.drag = 0f;
+        rb.angularDrag = 0f;
     }
 
     void Update()
     {
         float rotationInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.forward, -rotationInput * rotationSpeed * Time.deltaTime);
-
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.up * thrustPower * Time.deltaTime, ForceMode2D.Impulse);
-        }else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(-transform.up * thrustPower/3 * Time.deltaTime, ForceMode2D.Impulse);
+            rb.AddForce(-transform.up * thrustPower / 3 * Time.deltaTime, ForceMode2D.Impulse);
         }
 
         rb.velocity *= drag;
