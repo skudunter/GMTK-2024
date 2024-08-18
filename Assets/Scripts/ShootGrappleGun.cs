@@ -3,8 +3,10 @@ using UnityEngine;
 public class ShootGrappleGun : MonoBehaviour
 {
     private LineRenderer lineRenderer;
+
     [SerializeField]
     private float frequency = 1.5f;
+
     [SerializeField]
     private float dampingRatio = 0.7f;
     private Transform grapplePoint;
@@ -84,11 +86,18 @@ public class ShootGrappleGun : MonoBehaviour
 
         if (closestHit.collider != null)
         {
+            if (closestDistance < 1f)
+            {
+                joint.distance = range / 2;
+                joint.autoConfigureDistance = false;
+            }
+            else
+            {
+                joint.autoConfigureDistance = true;
+            }
             grapplePoint = closestHit.transform;
             joint.connectedBody = closestHit.rigidbody;
-            joint.autoConfigureDistance = true;
-            // joint.distance = closestDistance;
-            joint.frequency = frequency; 
+            joint.frequency = frequency;
             joint.dampingRatio = dampingRatio;
             joint.enabled = true;
 
