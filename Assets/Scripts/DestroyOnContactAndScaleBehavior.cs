@@ -5,6 +5,10 @@ using UnityEngine;
 public class DestroyOnContactAndScaleBehavior : MonoBehaviour
 {
     private GravitationalAttraction gravitationalAttraction;
+    [SerializeField]
+    private float newScale;
+    [SerializeField]
+    private float newGravitationalConstantIncrement;
     void Start() {
         gravitationalAttraction = GetComponent<GravitationalAttraction>();
      }
@@ -20,6 +24,7 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
         {
+            AbsorbAstroid();
             Destroy(other.gameObject);
         }
     }
@@ -27,8 +32,8 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
     {
         //TODO add score
         //TODO make black hole grow more when absorbing bigger asteroids
-        transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-        gravitationalAttraction.IncrementGravitationalConstant(0.1f);
+        transform.localScale += new Vector3(newScale, newScale, newScale);
+        gravitationalAttraction.IncrementGravitationalConstant(newGravitationalConstantIncrement);
 
     }
 }
