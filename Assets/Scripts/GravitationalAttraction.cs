@@ -48,13 +48,22 @@ public class GravitationalAttraction : MonoBehaviour
     {
         Vector2 directionToBlackHole = (Vector2)transform.position - rb.position;
         float distance = directionToBlackHole.magnitude;
-
-        if (distance > 0.3f)
+        if (distance < 0.1f)
+        {
+            distance = 0.1f;
+        }
+        else if (distance < 20f)
         {
             directionToBlackHole.Normalize();
             float forceMagnitude = gravitationalConstant * (rb.mass * 1) / (distance * distance);
             Vector2 force = directionToBlackHole * forceMagnitude;
             rb.AddForce(force);
+        }
+        else{
+            directionToBlackHole.Normalize();
+            float forceMagnitude = gravitationalConstant * (rb.mass * 1) / 400f;
+            Vector2 force = directionToBlackHole * forceMagnitude;
+            rb.AddForce(force); 
         }
     }
 
