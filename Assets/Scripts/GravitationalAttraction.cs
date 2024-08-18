@@ -57,4 +57,9 @@ public class GravitationalAttraction : MonoBehaviour
             rb.AddForce(force);
         }
     }
+
+    public void IncrementGravitationalConstant(float delta)
+    {
+        gravitationalConstant += delta;
+    }
 }
