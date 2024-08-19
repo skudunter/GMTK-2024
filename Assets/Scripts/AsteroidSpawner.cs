@@ -8,6 +8,7 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] private GameObject normalAsteroidPrefab;
     [SerializeField] private GameObject denseAsteroidPrefab;
     [SerializeField] private GameObject lightAsteroidPrefab;
+    [SerializeField] private float maxSpin = 100.0f;
 
     [Header("Spawn Settings")]
     [SerializeField] private float baseSpawnRate = 1.0f; // Base time in seconds between spawns
@@ -113,7 +114,7 @@ public class AsteroidSpawner : MonoBehaviour
     {
         float speed = Random.Range(asteroidStats.minVelocity, asteroidStats.maxVelocity);
         float size = Random.Range(asteroidStats.minSize, asteroidStats.maxSize);
-
+        asteroid.transform.Rotate(Random.Range(0,maxSpin),Random.Range(0,maxSpin), Random.Range(0, maxSpin));
         asteroid.transform.GetChild(0).transform.localScale = new Vector3(size, size, size);
         asteroidRb.mass = size * asteroidStats.density;
         asteroidRb.velocity = finalDirection * speed;
