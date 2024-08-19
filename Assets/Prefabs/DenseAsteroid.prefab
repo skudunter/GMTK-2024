@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 129472294238827693}
   - component: {fileID: 7601085905321431042}
   - component: {fileID: 2135929684780013264}
+  - component: {fileID: 5595299841209605488}
   m_Layer: 7
-  m_Name: Asteroid
+  m_Name: DenseAsteroid
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,6 +109,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5595299841209605488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171721415181232022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1abb82fd0f5cca47a22af9be93bb767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8386720040013150948
 GameObject:
   m_ObjectHideFlags: 0
