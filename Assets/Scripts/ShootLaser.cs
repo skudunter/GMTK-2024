@@ -30,7 +30,7 @@ public class ShootLaser : MonoBehaviour
         // Perform the raycast, but now using RaycastAll to get all hits
         RaycastHit2D[] hits = Physics2D.RaycastAll(
             laserFirePoint.transform.position,
-            laserFirePoint.transform.forward,
+            laserFirePoint.transform.up,
             maxLaserDistance
         );
 
@@ -63,8 +63,8 @@ public class ShootLaser : MonoBehaviour
                     && hit.collider.gameObject.layer == LayerMask.NameToLayer("Asteroids")
                 )
                 {
-                    Debug.Log("Hit: " + hit.collider.name);
-                    // Add your code to damage the enemy or handle the hit here
+                    Destroy(hit.collider.gameObject);
+                    GameManager.AddScore(1);
                 }
             }
         }
@@ -74,7 +74,7 @@ public class ShootLaser : MonoBehaviour
             lineRenderer.SetPosition(
                 1,
                 laserFirePoint.transform.position
-                    + laserFirePoint.transform.forward * maxLaserDistance
+                    + laserFirePoint.transform.up * maxLaserDistance
             );
         }
     }
