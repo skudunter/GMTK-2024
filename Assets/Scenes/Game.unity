@@ -1252,7 +1252,7 @@ MonoBehaviour:
   normalAsteroidPrefab: {fileID: 5171721415181232022, guid: 09c032d4eb6c405499fb38f5c8df7404, type: 3}
   denseAsteroidPrefab: {fileID: 5171721415181232022, guid: 4921354c9da0ad74cbe595c200031b8c, type: 3}
   lightAsteroidPrefab: {fileID: 5171721415181232022, guid: 4ec2ba23a6a66464c97aea5ff254702c, type: 3}
-  baseSpawnRate: 1000
+  baseSpawnRate: 10
   spawnRateCurve:
     serializedVersion: 2
     m_Curve:
