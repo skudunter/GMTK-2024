@@ -16,13 +16,9 @@ public class ShootGrappleGun : MonoBehaviour
     private float range = 100f;
 
     [SerializeField]
-    private LayerMask asteroidLayer;
-
-    [SerializeField]
     private Transform firePoint;
 
-    [SerializeField]
-    private int rayCount = 36;
+    private GameObject asteroidManager;
 
     [SerializeField]
     private int ropeSegments = 10; // Number of segments for the rope
@@ -40,10 +36,7 @@ public class ShootGrappleGun : MonoBehaviour
 
         joint = gameObject.AddComponent<SpringJoint2D>();
         joint.enabled = false;
-    }
-    public float getRange()
-    {
-        return range;
+        asteroidManager = GameObject.Find("AsteroidManager");
     }
 
     void Update()
@@ -66,29 +59,21 @@ public class ShootGrappleGun : MonoBehaviour
 
     void ShootGrapple()
     {
-        float angleStep = 360f / rayCount;
-        RaycastHit2D closestHit = new RaycastHit2D();
+        GameObject closestAsteroid = null;
         float closestDistance = range;
 
-        for (int i = 0; i < rayCount; i++)
+        for (int i = 0; i < asteroidManager.transform.childCount; i++)
         {
-            float angle = i * angleStep;
-            Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up;
-            RaycastHit2D hit = Physics2D.Raycast(
-                firePoint.position,
-                direction,
-                range,
-                asteroidLayer
-            );
-
-            if (hit.collider != null && hit.distance < closestDistance)
+            GameObject asteroid = asteroidManager.transform.GetChild(i).gameObject;
+            float distance = Vector2.Distance(firePoint.position, asteroid.transform.position);
+            if (distance < closestDistance)
             {
-                closestHit = hit;
-                closestDistance = hit.distance;
+                closestDistance = distance;
+                closestAsteroid = asteroid;
             }
         }
 
-        if (closestHit.collider != null)
+        if (closestAsteroid != null)
         {
             if (closestDistance < 1f)
             {
@@ -99,13 +84,16 @@ public class ShootGrappleGun : MonoBehaviour
             {
                 joint.autoConfigureDistance = true;
             }
-            WasInteracttedWith wasInteracttedWith = closestHit.collider.GetComponent<WasInteracttedWith>();
+
+            WasInteracttedWith wasInteracttedWith =
+                closestAsteroid.GetComponent<WasInteracttedWith>();
             if (wasInteracttedWith != null)
             {
                 wasInteracttedWith.SetWasInteracttedWith(true);
             }
-            grapplePoint = closestHit.transform;
-            joint.connectedBody = closestHit.rigidbody;
+
+            grapplePoint = closestAsteroid.transform;
+            joint.connectedBody = closestAsteroid.GetComponent<Rigidbody2D>();
             joint.frequency = frequency;
             joint.dampingRatio = dampingRatio;
             joint.enabled = true;
