@@ -23,14 +23,21 @@ public class ShootGrappleGun : MonoBehaviour
 
     // Tractor beam
     [SerializeField]
-    private float tractor_beam_desired_distance = 200.0f;
-    [SerializeField]
-    private float tractor_beam_force_pull = 50.0f;
+    private float tractor_beam_desired_distance = 3.0f;
+
+  
     private bool tractor_beam_enabled = false;
+    private bool tractor_beam_caught = false;
+    
     private float tractor_beam_time = 0.0f;
 
     [SerializeField]
-    private float tractor_beam_force_push = 200.0f;
+    private float tractor_beam_force_push = 20.0f;
+
+    [SerializeField]
+    private float tractor_beam_force_pull = 10.0f;
+
+
 
 
 
@@ -102,11 +109,17 @@ public class ShootGrappleGun : MonoBehaviour
                 Vector2 desiredPos = player.transform.position + player.transform.up*tractor_beam_desired_distance;
                 float distance = Vector2.Distance(desiredPos, asteroidRb.position);
 
-                if (distance < 0.2){
+                if (distance < 0.4){
                     asteroidRb.MovePosition(desiredPos); 
+                    tractor_beam_caught = true;
                 }
                 else{
-                    asteroidRb.velocity = (desiredPos-asteroidRb.position).normalized*2.0f;
+                    if (tractor_beam_caught){
+                        asteroidRb.MovePosition(desiredPos); 
+                    }
+                    else{
+                        asteroidRb.velocity = (desiredPos-asteroidRb.position).normalized*tractor_beam_force_pull;
+                    }
                 }
                 
                 tractor_beam_time += Time.deltaTime;
@@ -117,6 +130,7 @@ public class ShootGrappleGun : MonoBehaviour
         else{
             lineRenderer.enabled = false;
             tractor_beam_enabled = false;
+            tractor_beam_caught = false;
             
         }
     }
@@ -174,6 +188,7 @@ public class ShootGrappleGun : MonoBehaviour
 
             closestAsteroid = null;
             tractor_beam_enabled = false;
+            tractor_beam_caught = false;
             tractor_beam_time = 0.0f;
         }
 
