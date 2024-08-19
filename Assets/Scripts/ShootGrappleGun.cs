@@ -55,6 +55,23 @@ public class ShootGrappleGun : MonoBehaviour
         {
             DrawRope();
         }
+
+        // play animation when asteroid is close    
+
+        GameObject closestAsteroid = GetClosestAsteroid();
+
+        if(closestAsteroid != null)
+        {
+            float distance = Vector2.Distance(firePoint.position, closestAsteroid.transform.position);
+            if (distance < 1f)
+            {
+                closestAsteroid.GetComponent<Animator>().SetBool("isClose", true);
+            }
+            else
+            {
+                closestAsteroid.GetComponent<Animator>().SetBool("isClose", false);
+            }
+        }
     }
 
     void ShootGrapple()
@@ -106,6 +123,25 @@ public class ShootGrappleGun : MonoBehaviour
     {
         joint.enabled = false;
         lineRenderer.enabled = false;
+    }
+
+    private GameObject GetClosestAsteroid()
+    {
+        GameObject closestAsteroid = null;
+        float closestDistance = range;
+
+        for (int i = 0; i < asteroidManager.transform.childCount; i++)
+        {
+            GameObject asteroid = asteroidManager.transform.GetChild(i).gameObject;
+            float distance = Vector2.Distance(firePoint.position, asteroid.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestAsteroid = asteroid;
+            }
+        }
+
+        return closestAsteroid;
     }
 
     void DrawRope()
