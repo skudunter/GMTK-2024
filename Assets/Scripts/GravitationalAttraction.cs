@@ -13,7 +13,7 @@ public class GravitationalAttraction : MonoBehaviour
 
     void Start()
     {
-        asteroidsHolder = GameObject.Find("Asteroids");
+        asteroidsHolder = GameObject.Find("AsteroidManager");
         player = GameObject.Find("Player");
         playerRb = player.GetComponent<Rigidbody2D>();
 

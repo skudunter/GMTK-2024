@@ -5,7 +5,6 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
     public GameObject asteroidPrefab;
-    public GameObject asteroidHolder;
     public float spawnRate = 1.0f; // Time in seconds between spawns
     public float minVelocity = 2.0f;
     public float maxVelocity = 5.0f;
@@ -56,7 +55,7 @@ public class AsteroidSpawner : MonoBehaviour
         // Instantiate the asteroid
 
         GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
-        asteroid.transform.parent = asteroidHolder.transform;
+        asteroid.transform.parent = transform;
         // Calculate a random inward direction
         Vector2 directionToCenter = (Vector2)Camera.main.transform.position - spawnPosition;
         directionToCenter.Normalize();
