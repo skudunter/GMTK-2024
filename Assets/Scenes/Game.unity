@@ -273,6 +273,72 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &258795006
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 818607953}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1500001
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.84133905
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5405078
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -65.436
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+      propertyPath: m_Name
+      value: Spaceship
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+--- !u!4 &258795007 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ed129558c749ee4c80879c6c2759265, type: 3}
+  m_PrefabInstance: {fileID: 258795006}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +448,7 @@ GameObject:
   - component: {fileID: 818607958}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Gravitable
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,6 +467,7 @@ Transform:
   m_Children:
   - {fileID: 928907713}
   - {fileID: 1685848872}
+  - {fileID: 258795007}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -416,7 +483,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -444,8 +511,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 280
-  thrustPower: 15
-  drag: 0.95
+  thrustPower: 120
+  drag: 0.98
 --- !u!114 &818607956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,6 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1103712498}
   - component: {fileID: 1103712499}
+  - component: {fileID: 1103712500}
   m_Layer: 0
   m_Name: AsteroidManager
   m_TagString: Untagged
@@ -746,6 +814,18 @@ MonoBehaviour:
   spawnRate: 5
   minVelocity: 2
   maxVelocity: 5
+--- !u!114 &1103712500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103712497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc21595d9a15b44fad4ccdac5a77db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245994811
 GameObject:
   m_ObjectHideFlags: 0

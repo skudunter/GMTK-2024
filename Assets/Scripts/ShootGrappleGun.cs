@@ -41,6 +41,10 @@ public class ShootGrappleGun : MonoBehaviour
         joint = gameObject.AddComponent<SpringJoint2D>();
         joint.enabled = false;
     }
+    public float getRange()
+    {
+        return range;
+    }
 
     void Update()
     {
