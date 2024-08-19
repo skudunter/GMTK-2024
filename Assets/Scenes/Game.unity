@@ -1252,9 +1252,31 @@ MonoBehaviour:
   normalAsteroidPrefab: {fileID: 5171721415181232022, guid: 09c032d4eb6c405499fb38f5c8df7404, type: 3}
   denseAsteroidPrefab: {fileID: 5171721415181232022, guid: 4921354c9da0ad74cbe595c200031b8c, type: 3}
   lightAsteroidPrefab: {fileID: 5171721415181232022, guid: 4ec2ba23a6a66464c97aea5ff254702c, type: 3}
-  spawnRate: 3.33
-  minVelocity: 2
-  maxVelocity: 4
+  baseSpawnRate: 1000
+  spawnRateCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1245994811
 GameObject:
   m_ObjectHideFlags: 0

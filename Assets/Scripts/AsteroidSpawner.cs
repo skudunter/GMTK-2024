@@ -4,93 +4,117 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-    public GameObject normalAsteroidPrefab;
-    public GameObject denseAsteroidPrefab;
-    public GameObject lightAsteroidPrefab;
-    private AsteroidStats asteroidStats;
-    public float spawnRate = 1.0f; // Time in seconds between spawns
-    public float minVelocity = 2.0f;
-    public float maxVelocity = 5.0f;
+    [Header("Asteroid Prefabs")]
+    [SerializeField] private GameObject normalAsteroidPrefab;
+    [SerializeField] private GameObject denseAsteroidPrefab;
+    [SerializeField] private GameObject lightAsteroidPrefab;
+
+    [Header("Spawn Settings")]
+    [SerializeField] private float baseSpawnRate = 1.0f; // Base time in seconds between spawns
+    [SerializeField] private AnimationCurve spawnRateCurve; // Non-linear control for spawn rate
 
     private float screenWidth;
     private float screenHeight;
+    private float elapsedTime = 0f;
 
-    void Start()
+    private void Start()
     {
-        // Convert screen size to world units
-        screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        screenHeight = Camera.main.orthographicSize;
-
-        // Start the spawning process
+        InitializeScreenDimensions();
         StartCoroutine(SpawnAsteroids());
     }
 
-    IEnumerator SpawnAsteroids()
+    private void InitializeScreenDimensions()
+    {
+        screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        screenHeight = Camera.main.orthographicSize;
+    }
+
+    private IEnumerator SpawnAsteroids()
     {
         while (true)
         {
+            float adjustedSpawnRate = baseSpawnRate * spawnRateCurve.Evaluate(elapsedTime);
             SpawnAsteroid();
-            yield return new WaitForSeconds(spawnRate);
+            yield return new WaitForSeconds(adjustedSpawnRate);
+            elapsedTime += adjustedSpawnRate;
         }
     }
 
-    void SpawnAsteroid()
+    private void SpawnAsteroid()
+    {
+        Vector2 spawnPosition = GetRandomSpawnPosition();
+        GameObject asteroidPrefab = GetRandomAsteroidPrefab();
+        GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
+        asteroid.transform.parent = transform;
+
+        InitializeAsteroid(asteroid, spawnPosition);
+    }
+
+    private Vector2 GetRandomSpawnPosition()
     {
         int edge = Random.Range(0, 4);
-        Vector2 spawnPosition = Vector2.zero;
 
         switch (edge)
         {
             case 0: // Left edge
-                spawnPosition = new Vector2(-screenWidth, Random.Range(-screenHeight, screenHeight));
-                break;
+                return new Vector2(-screenWidth, Random.Range(-screenHeight, screenHeight));
             case 1: // Right edge
-                spawnPosition = new Vector2(screenWidth, Random.Range(-screenHeight, screenHeight));
-                break;
+                return new Vector2(screenWidth, Random.Range(-screenHeight, screenHeight));
             case 2: // Top edge
-                spawnPosition = new Vector2(Random.Range(-screenWidth, screenWidth), screenHeight);
-                break;
+                return new Vector2(Random.Range(-screenWidth, screenWidth), screenHeight);
             case 3: // Bottom edge
-                spawnPosition = new Vector2(Random.Range(-screenWidth, screenWidth), -screenHeight);
-                break;
+                return new Vector2(Random.Range(-screenWidth, screenWidth), -screenHeight);
+            default:
+                return Vector2.zero; // Fallback, shouldn't occur
         }
+    }
 
-        // Instantiate the asteroid
-        GameObject asteroidPrefab = null;
+    private GameObject GetRandomAsteroidPrefab()
+    {
         int rand = Random.Range(0, 3);
+
         switch (rand)
         {
             case 0:
-                asteroidPrefab = normalAsteroidPrefab;
-                break;
+                return normalAsteroidPrefab;
             case 1:
-                asteroidPrefab = denseAsteroidPrefab;
-                break;
+                return denseAsteroidPrefab;
             case 2:
-                asteroidPrefab = lightAsteroidPrefab;
-                break;
+                return lightAsteroidPrefab;
+            default:
+                return null; // Fallback, shouldn't occur
         }
-        GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
-        asteroidStats = asteroid.GetComponent<AsteroidStats>();
+    }
 
-        asteroid.transform.parent = transform;
-        // Calculate a random inward direction
+    private void InitializeAsteroid(GameObject asteroid, Vector2 spawnPosition)
+    {
+        AsteroidStats asteroidStats = asteroid.GetComponent<AsteroidStats>();
+
+        // Calculate a random inward direction with some randomness
+        Vector2 finalDirection = CalculateDirectionToCenter(spawnPosition);
+        Rigidbody2D asteroidRb = asteroid.GetComponent<Rigidbody2D>();
+
+        ApplyAsteroidPhysics(asteroid, asteroidRb, asteroidStats, finalDirection);
+    }
+
+    private Vector2 CalculateDirectionToCenter(Vector2 spawnPosition)
+    {
         Vector2 directionToCenter = (Vector2)Camera.main.transform.position - spawnPosition;
         directionToCenter.Normalize();
 
-        // Add some randomness to the direction
         Vector2 randomOffset = new Vector2(Random.Range(-0.5f, 0.6f), Random.Range(-0.5f, 0.6f));
         Vector2 finalDirection = directionToCenter + randomOffset;
         finalDirection.Normalize();
 
-        // Apply the velocity
-        Rigidbody2D asteroidRb = asteroid.GetComponent<Rigidbody2D>();
+        return finalDirection;
+    }
+
+    private void ApplyAsteroidPhysics(GameObject asteroid, Rigidbody2D asteroidRb, AsteroidStats asteroidStats, Vector2 finalDirection)
+    {
         float speed = Random.Range(asteroidStats.minVelocity, asteroidStats.maxVelocity);
-
         float size = Random.Range(asteroidStats.minSize, asteroidStats.maxSize);
-        Debug.Log(size);
-        asteroid.transform.GetChild(0).transform.localScale = new Vector3(size, size, size);
 
+        asteroid.transform.GetChild(0).transform.localScale = new Vector3(size, size, size);
         asteroidRb.mass = size * asteroidStats.density;
         asteroidRb.velocity = finalDirection * speed;
     }
