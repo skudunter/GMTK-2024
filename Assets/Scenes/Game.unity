@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75140c3e839d463449ed178a5f8bf5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitationalConstant: 0
+  gravitationalConstant: 0.5
 --- !u!114 &365766397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,8 +490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b9b991378759e478766a074cdf3707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newScale: 0.7
-  newGravitationalConstantIncrement: 0
+  newScale: 0.1
+  newGravitationalConstantIncrement: 0.1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +599,7 @@ GameObject:
   - component: {fileID: 818607956}
   - component: {fileID: 818607957}
   - component: {fileID: 818607958}
+  - component: {fileID: 818607959}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -621,6 +622,7 @@ Transform:
   - {fileID: 928907713}
   - {fileID: 1685848872}
   - {fileID: 258795007}
+  - {fileID: 2063459710}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -664,7 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 280
-  thrustPower: 120
+  thrustPower: 186
   drag: 0.98
 --- !u!114 &818607956
 MonoBehaviour:
@@ -739,12 +741,33 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.4894874}
-      - {x: -0.23902589, y: -0.17462656}
-      - {x: -0.22854549, y: -0.23166764}
-      - {x: 0.2519219, y: -0.25896692}
-      - {x: 0.14277792, y: 0.082069576}
+    - - {x: 0.5398512, y: 0.6714492}
+      - {x: 0.21293855, y: 0.67245054}
+      - {x: 0.10295367, y: 0.98379445}
+      - {x: -0.10165143, y: 0.9826534}
+      - {x: -0.18179631, y: 0.6624315}
+      - {x: -0.5697856, y: 0.66941965}
+      - {x: -0.53484225, y: 0.6621475}
+      - {x: -0.54233193, y: -0.07158399}
+      - {x: -0.29502416, y: -0.074213505}
+      - {x: -0.2979532, y: -0.08202669}
+      - {x: -0.26822335, y: -0.46597207}
+      - {x: 0.31350994, y: -0.47161102}
+      - {x: 0.29926538, y: -0.073261976}
+      - {x: 0.5384321, y: -0.06103927}
   m_UseDelaunayMesh: 0
+--- !u!114 &818607959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818607952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7c2fe488d3c374f912d288bc01f129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928907712
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928907713}
   m_Layer: 0
-  m_Name: Firepoint
+  m_Name: GrappleFirepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,9 +981,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 5171721415181232022, guid: 09c032d4eb6c405499fb38f5c8df7404, type: 3}
-  spawnRate: 5
+  spawnRate: 3.33
   minVelocity: 2
-  maxVelocity: 5
+  maxVelocity: 4
 --- !u!1 &1245994811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,4 +1439,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2063459709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063459710}
+  m_Layer: 6
+  m_Name: LaserFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2063459710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063459709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 818607953}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
