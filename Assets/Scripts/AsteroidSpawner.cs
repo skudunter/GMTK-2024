@@ -5,6 +5,9 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
     public GameObject normalAsteroidPrefab;
+    public GameObject denseAsteroidPrefab;
+    public GameObject lightAsteroidPrefab;
+    private AsteroidStats asteroidStats;
     public float spawnRate = 1.0f; // Time in seconds between spawns
     public float minVelocity = 2.0f;
     public float maxVelocity = 5.0f;
@@ -53,21 +56,42 @@ public class AsteroidSpawner : MonoBehaviour
         }
 
         // Instantiate the asteroid
+        GameObject asteroidPrefab = null;
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                asteroidPrefab = normalAsteroidPrefab;
+                break;
+            case 1:
+                asteroidPrefab = denseAsteroidPrefab;
+                break;
+            case 2:
+                asteroidPrefab = lightAsteroidPrefab;
+                break;
+        }
+        GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
+        asteroidStats = asteroid.GetComponent<AsteroidStats>();
 
-        GameObject asteroid = Instantiate(normalAsteroidPrefab, spawnPosition, Quaternion.identity);
         asteroid.transform.parent = transform;
         // Calculate a random inward direction
         Vector2 directionToCenter = (Vector2)Camera.main.transform.position - spawnPosition;
         directionToCenter.Normalize();
 
         // Add some randomness to the direction
-        Vector2 randomOffset = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+        Vector2 randomOffset = new Vector2(Random.Range(-0.5f, 0.6f), Random.Range(-0.5f, 0.6f));
         Vector2 finalDirection = directionToCenter + randomOffset;
         finalDirection.Normalize();
 
         // Apply the velocity
         Rigidbody2D asteroidRb = asteroid.GetComponent<Rigidbody2D>();
-        float speed = Random.Range(minVelocity, maxVelocity);
+        float speed = Random.Range(asteroidStats.minVelocity, asteroidStats.maxVelocity);
+
+        float size = Random.Range(asteroidStats.minSize, asteroidStats.maxSize);
+        Debug.Log(size);
+        asteroid.transform.GetChild(0).transform.localScale = new Vector3(size, size, size);
+
+        asteroidRb.mass = size * asteroidStats.density;
         asteroidRb.velocity = finalDirection * speed;
     }
 }

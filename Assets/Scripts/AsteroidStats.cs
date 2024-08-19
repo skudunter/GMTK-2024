@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class AsteroidStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public float minVelocity = 2.0f;
+    public float maxVelocity = 5.0f;
+    public float density = 1.0f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float minSize = 0.5f;
+
+    public float maxSize = 2.0f;
 }

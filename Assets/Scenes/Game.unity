@@ -311,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474162, guid: c992d79b826e7ac4c93ec12f114e838a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000000030714
+      value: 48.2
       objectReference: {fileID: 0}
     - target: {fileID: 474162, guid: c992d79b826e7ac4c93ec12f114e838a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1250,6 +1250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalAsteroidPrefab: {fileID: 5171721415181232022, guid: 09c032d4eb6c405499fb38f5c8df7404, type: 3}
+  denseAsteroidPrefab: {fileID: 5171721415181232022, guid: 4921354c9da0ad74cbe595c200031b8c, type: 3}
+  lightAsteroidPrefab: {fileID: 5171721415181232022, guid: 4ec2ba23a6a66464c97aea5ff254702c, type: 3}
   spawnRate: 3.33
   minVelocity: 2
   maxVelocity: 4
