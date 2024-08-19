@@ -19,6 +19,7 @@ public class KillOffScreen : MonoBehaviour
         {
             if (wasInteracttedWith.GetWasInteracttedWith())
             {
+                GUI.updateLaserCharge(1);
                 GameManager.AddScore(1);
             }
             Destroy(gameObject);

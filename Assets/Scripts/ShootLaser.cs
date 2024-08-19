@@ -18,20 +18,25 @@ public class ShootLaser : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ShootLaserBeam();
+            if (GUI.laserCharge == 4)
+            {
+                GUI.updateLaserCharge(-4);
+                ShootLaserBeam();
+            }
         }
     }
 
     void ShootLaserBeam()
     {
         // Define the maximum laser distance
-        float maxLaserDistance = 100f;
+        float maxLaserDistance = 200f;
 
         // Perform the raycast, but now using RaycastAll to get all hits
         RaycastHit2D[] hits = Physics2D.RaycastAll(
             laserFirePoint.transform.position,
             laserFirePoint.transform.up,
-            maxLaserDistance
+            maxLaserDistance,
+            LayerMask.GetMask("Asteroids")
         );
 
         // Initialize the LineRenderer if it's not already initialized
@@ -73,8 +78,7 @@ public class ShootLaser : MonoBehaviour
             // If no hits, set the end position to the maximum distance
             lineRenderer.SetPosition(
                 1,
-                laserFirePoint.transform.position
-                    + laserFirePoint.transform.up * maxLaserDistance
+                laserFirePoint.transform.position + laserFirePoint.transform.up * maxLaserDistance
             );
         }
     }
