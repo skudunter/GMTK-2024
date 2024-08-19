@@ -858,6 +858,8 @@ MonoBehaviour:
   rotationSpeed: 280
   thrustPower: 186
   drag: 0.98
+  tiltAmount: 15
+  tiltSmoothSpeed: 5
 --- !u!114 &818607956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,7 +960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7c2fe488d3c374f912d288bc01f129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canShoot: 0
 --- !u!1 &928907712
 GameObject:
   m_ObjectHideFlags: 0
