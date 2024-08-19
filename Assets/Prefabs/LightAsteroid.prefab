@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5171721415181232022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.89, y: -0.09, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -303,26 +303,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: asteroid
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63c95ae71f0381c4fbdfe596eb539bfb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63c95ae71f0381c4fbdfe596eb539bfb, type: 3}
+      propertyPath: m_TagString
+      value: Asteroid
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c95ae71f0381c4fbdfe596eb539bfb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6813166063610306250}
+      addedObject: {fileID: 5221920947641734552}
   m_SourcePrefab: {fileID: 100100000, guid: 63c95ae71f0381c4fbdfe596eb539bfb, type: 3}
 --- !u!1 &7459863364478668272 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63c95ae71f0381c4fbdfe596eb539bfb, type: 3}
   m_PrefabInstance: {fileID: 7730336286996607137}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &6813166063610306250
-MeshCollider:
+--- !u!58 &5221920947641734552
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7459863364478668272}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -331,13 +341,24 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8908299743826163017, guid: 63c95ae71f0381c4fbdfe596eb539bfb, type: 3}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.015625}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!4 &7839942970936907594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63c95ae71f0381c4fbdfe596eb539bfb, type: 3}

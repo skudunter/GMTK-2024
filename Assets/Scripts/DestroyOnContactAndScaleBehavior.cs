@@ -27,6 +27,11 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
             AbsorbAstroid();
             Destroy(other.gameObject);
         }
+          else if (other.gameObject.name == "asteroid")
+        {
+            AbsorbAstroid();
+            Destroy(other.gameObject);
+        }
     }
     void AbsorbAstroid()
     {

@@ -116,6 +116,7 @@ public class AsteroidSpawner : MonoBehaviour
         float size = Random.Range(asteroidStats.minSize, asteroidStats.maxSize);
         asteroid.transform.Rotate(Random.Range(0,maxSpin),Random.Range(0,maxSpin), Random.Range(0, maxSpin));
         asteroid.transform.GetChild(0).transform.localScale = new Vector3(size, size, size);
+        asteroidRb.angularVelocity = Random.Range(-maxSpin, maxSpin);
         asteroidRb.mass = size * asteroidStats.density;
         asteroidRb.velocity = finalDirection * speed;
     }
