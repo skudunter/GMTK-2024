@@ -28,17 +28,19 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
         {
+            SoundManager.PlayScaleSound(transform.position);
             StartCoroutine(AbsorbAsteroid(other.gameObject));
         }
         else if (other.gameObject.name == "asteroid")
         {
+            SoundManager.PlayScaleSound(transform.position);
 
             StartCoroutine(AbsorbAsteroid(other.gameObject));
         }
     }
 
-    
-    IEnumerator AbsorbAsteroid(GameObject other){
+    IEnumerator AbsorbAsteroid(GameObject other)
+    {
         Animator animator = other.GetComponentInParent<Animator>();
         if (animator != null)
         {
@@ -48,7 +50,7 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         other.GetComponentInParent<Rigidbody2D>().velocity /= 2;
         yield return new WaitForSeconds(0.5f);
         Destroy(other.gameObject);
-        GameManager.DoScreenShake(other.GetComponentInParent<Rigidbody2D>().mass/7);
+        GameManager.DoScreenShake(other.GetComponentInParent<Rigidbody2D>().mass / 7);
         transform.localScale += new Vector3(newScale, newScale, newScale);
         gravitationalAttraction.IncrementGravitationalConstant(newGravitationalConstantIncrement);
     }

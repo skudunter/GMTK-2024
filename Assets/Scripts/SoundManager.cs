@@ -10,6 +10,13 @@ public static class SoundManager
     static AudioClip explosion1;
     static AudioClip explosion2;
     static AudioClip explosion3;
+    static AudioClip scale1;
+    static AudioClip scale2;
+    static AudioClip scale3;
+
+    static AudioClip score1;
+    static AudioClip score2;
+    static AudioClip score3;
 
     public static void Init()
     {
@@ -20,6 +27,14 @@ public static class SoundManager
         explosion1 = Resources.Load<AudioClip>("Audio/explosion1");
         explosion2 = Resources.Load<AudioClip>("Audio/explosion2");
         explosion3 = Resources.Load<AudioClip>("Audio/explosion3");
+
+        scale1 = Resources.Load<AudioClip>("Audio/scale1");
+        scale2 = Resources.Load<AudioClip>("Audio/scale2");
+        scale3 = Resources.Load<AudioClip>("Audio/scale3");
+
+        score1 = Resources.Load<AudioClip>("Audio/score1");
+        score2 = Resources.Load<AudioClip>("Audio/score2");
+        score3 = Resources.Load<AudioClip>("Audio/score3");
     }
 
     private static void PlaySound(AudioClip clip, Vector3 position, float volume = 1f)
@@ -67,6 +82,38 @@ public static class SoundManager
                 break;
             case 2:
                 PlaySound(explosion3, position, volume);
+                break;
+        }
+    }
+    public static void PlayScaleSound(Vector3 position, float volume = 0.7f)
+    {
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                PlaySound(scale1, position, volume);
+                break;
+            case 1:
+                PlaySound(scale2, position, volume);
+                break;
+            case 2:
+                PlaySound(scale3, position, volume);
+                break;
+        }
+    }
+    public static void PlayScoreSound(Vector3 position, float volume = 0.7f)
+    {
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                PlaySound(score1, position, volume);
+                break;
+            case 1:
+                PlaySound(score2, position, volume);
+                break;
+            case 2:
+                PlaySound(score3, position, volume);
                 break;
         }
     }

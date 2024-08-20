@@ -9,6 +9,7 @@ public static class GameManager
 
     public static void AddScore(int points)
     {
+        SoundManager.PlayScoreSound(new Vector3(0, 0, 0));
         score += points;
         GUI.updateScore(score);
     }
