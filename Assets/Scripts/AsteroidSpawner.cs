@@ -31,15 +31,16 @@ public class AsteroidSpawner : MonoBehaviour
     }
 
     private IEnumerator SpawnAsteroids()
+{
+    while (true)
     {
-        while (true)
-        {
-            float adjustedSpawnRate = baseSpawnRate * spawnRateCurve.Evaluate(elapsedTime);
-            SpawnAsteroid();
-            yield return new WaitForSeconds(adjustedSpawnRate);
-            elapsedTime += adjustedSpawnRate;
-        }
+        float adjustedSpawnRate = baseSpawnRate / spawnRateCurve.Evaluate(elapsedTime); // Inverse to make higher curve values faster
+        SpawnAsteroid();
+        yield return new WaitForSeconds(adjustedSpawnRate);
+        elapsedTime += Time.deltaTime; // Increment by time, not spawn rate, for consistency
     }
+}
+
 
     private void SpawnAsteroid()
     {

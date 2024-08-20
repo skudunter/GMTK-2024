@@ -48,7 +48,7 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         other.GetComponentInParent<Rigidbody2D>().velocity /= 2;
         yield return new WaitForSeconds(0.5f);
         Destroy(other.gameObject);
-        GameManager.DoScreenShake(other.GetComponentInParent<Rigidbody2D>().mass/8);
+        GameManager.DoScreenShake(other.GetComponentInParent<Rigidbody2D>().mass/7);
         transform.localScale += new Vector3(newScale, newScale, newScale);
         gravitationalAttraction.IncrementGravitationalConstant(newGravitationalConstantIncrement);
     }
