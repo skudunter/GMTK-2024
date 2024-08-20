@@ -19,6 +19,8 @@ public static class SoundManager
     static AudioClip score3;
     static AudioClip engineSound;
 
+    static AudioClip laserSound;
+
     public static void Init()
     {
         clip1 = Resources.Load<AudioClip>("Audio/collision1");
@@ -38,6 +40,7 @@ public static class SoundManager
         score3 = Resources.Load<AudioClip>("Audio/score3");
 
         engineSound = Resources.Load<AudioClip>("Audio/engine");
+        laserSound = Resources.Load<AudioClip>("Audio/laser");
     }
 
     private static void PlaySound(AudioClip clip, Vector3 position, float volume = 1f)
@@ -123,5 +126,9 @@ public static class SoundManager
     public static void PlayEngineSound(Vector3 position, float volume = 0.7f)
     {
         PlaySound(engineSound, position, volume);
+    }
+    public static void PlayLaserSound(Vector3 position, float volume = 0.7f)
+    {
+        PlaySound(laserSound, position, volume);
     }
 }

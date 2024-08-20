@@ -28,6 +28,7 @@ public class ShootLaser : MonoBehaviour
 
     void ShootLaserBeam()
     {
+        SoundManager.PlayLaserSound(laserFirePoint.transform.position);
         // Define the maximum laser distance
         float maxLaserDistance = 200f;
 
@@ -58,7 +59,7 @@ public class ShootLaser : MonoBehaviour
         if (hits.Length > 0)
         {
             Vector2 lastHitPoint = hits[hits.Length - 1].point;
-            lineRenderer.SetPosition(1, lastHitPoint);
+            // lineRenderer.SetPosition(1, lastHitPoint);
 
             // Process each hit (e.g., damage enemies)
             foreach (RaycastHit2D hit in hits)
@@ -74,13 +75,16 @@ public class ShootLaser : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            // If no hits, set the end position to the maximum distance
-            lineRenderer.SetPosition(
-                1,
-                laserFirePoint.transform.position + laserFirePoint.transform.up * maxLaserDistance
-            );
-        }
+        lineRenderer.SetPosition(
+            1,
+            laserFirePoint.transform.position + laserFirePoint.transform.up * maxLaserDistance
+        );
+        StartCoroutine(StopLaserBeam());
+    }
+
+    IEnumerator StopLaserBeam()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Destroy(lineRenderer);
     }
 }
