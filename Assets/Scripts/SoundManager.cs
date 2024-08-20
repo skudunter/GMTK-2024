@@ -17,6 +17,7 @@ public static class SoundManager
     static AudioClip score1;
     static AudioClip score2;
     static AudioClip score3;
+    static AudioClip engineSound;
 
     public static void Init()
     {
@@ -35,6 +36,8 @@ public static class SoundManager
         score1 = Resources.Load<AudioClip>("Audio/score1");
         score2 = Resources.Load<AudioClip>("Audio/score2");
         score3 = Resources.Load<AudioClip>("Audio/score3");
+
+        engineSound = Resources.Load<AudioClip>("Audio/engine");
     }
 
     private static void PlaySound(AudioClip clip, Vector3 position, float volume = 1f)
@@ -69,7 +72,7 @@ public static class SoundManager
                 break;
         }
     }
-    public static void PlayExplosionSound(Vector3 position, float volume = 0.7f)
+    public static void PlayExplosionSound(Vector3 position, float volume = 0.5f)
     {
         int rand = Random.Range(0, 3);
         switch (rand)
@@ -116,5 +119,9 @@ public static class SoundManager
                 PlaySound(score3, position, volume);
                 break;
         }
+    }
+    public static void PlayEngineSound(Vector3 position, float volume = 0.7f)
+    {
+        PlaySound(engineSound, position, volume);
     }
 }
