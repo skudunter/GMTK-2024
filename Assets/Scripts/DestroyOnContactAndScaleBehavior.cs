@@ -47,9 +47,10 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
             animator.Play("asteroidDeath");
         }
         other.GetComponent<CircleCollider2D>().enabled = false;
+        other.GetComponentInParent<KillOffScreen>().enabled = false;
         other.GetComponentInParent<Rigidbody2D>().velocity /= 2;
         yield return new WaitForSeconds(0.5f);
-        Destroy(other.gameObject);
+        Destroy(other.gameObject.transform.parent.gameObject);
         GameManager.DoScreenShake(other.GetComponentInParent<Rigidbody2D>().mass / 7);
 
         Vector3 initialScale = transform.localScale;

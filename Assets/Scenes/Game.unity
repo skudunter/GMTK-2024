@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitationalConstant: 0.5
+  playerScale: 1
 --- !u!114 &365766397
 MonoBehaviour:
   m_ObjectHideFlags: 0

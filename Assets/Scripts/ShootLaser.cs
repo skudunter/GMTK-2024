@@ -58,23 +58,24 @@ public class ShootLaser : MonoBehaviour
         // If there are hits, set the end position to the farthest hit point
         if (hits.Length > 0)
         {
-            Vector2 lastHitPoint = hits[hits.Length - 1].point;
-            // lineRenderer.SetPosition(1, lastHitPoint);
-
             // Process each hit (e.g., damage enemies)
             foreach (RaycastHit2D hit in hits)
             {
                 if (
                     hit.collider != null
-                    && hit.collider.gameObject.layer == LayerMask.NameToLayer("Asteroids")
+                    && hit.collider.gameObject.layer == LayerMask.NameToLayer("Asteroids") && hit.collider.gameObject.name == "asteroid"
                 )
                 {
+                    Debug.Log(hit.collider.gameObject.name);
                     SoundManager.PlayExplosionSound(hit.point);
-                    Destroy(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
+                    hit.collider.gameObject.transform.parent.transform.GetChild(1).gameObject.SetActive(true);
+                    Destroy(hit.collider.gameObject.transform.parent.gameObject,2);
                     GameManager.AddScore(1);
                 }
             }
         }
+        
         lineRenderer.SetPosition(
             1,
             laserFirePoint.transform.position + laserFirePoint.transform.up * maxLaserDistance

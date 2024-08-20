@@ -6,7 +6,7 @@ public class GravitationalAttraction : MonoBehaviour
 {
     [SerializeField]
     private float gravitationalConstant = 0.1f;
-
+    public float playerScale = 15f;
     private GameObject player;
     private Rigidbody2D playerRb;
     private GameObject asteroidsHolder;
@@ -33,7 +33,7 @@ public class GravitationalAttraction : MonoBehaviour
 
     void Update()
     {
-        ApplyGravitationalForce(playerRb);
+        ApplyGravitationalForceToPlayer(playerRb);
         foreach (Transform asteroidTransform in asteroidsHolder.transform)
         {
             Rigidbody2D asteroidRb = asteroidTransform.GetComponent<Rigidbody2D>();
@@ -63,6 +63,28 @@ public class GravitationalAttraction : MonoBehaviour
             directionToBlackHole.Normalize();
             float forceMagnitude = gravitationalConstant * (rb.mass * 1) / 400f;
             Vector2 force = directionToBlackHole * forceMagnitude;
+            rb.AddForce(force); 
+        }
+    }
+    void ApplyGravitationalForceToPlayer(Rigidbody2D rb)
+    {
+        Vector2 directionToBlackHole = (Vector2)transform.position - rb.position;
+        float distance = directionToBlackHole.magnitude;
+        if (distance < 0.1f)
+        {
+            distance = 0.1f;
+        }
+        else if (distance < 20f)
+        {
+            directionToBlackHole.Normalize();
+            float forceMagnitude = gravitationalConstant * (rb.mass * 1) / (distance * distance);
+            Vector2 force = directionToBlackHole * forceMagnitude * playerScale;
+            rb.AddForce(force);
+        }
+        else{
+            directionToBlackHole.Normalize();
+            float forceMagnitude = gravitationalConstant * (rb.mass * 1) / 400f;
+            Vector2 force = directionToBlackHole * forceMagnitude * playerScale;
             rb.AddForce(force); 
         }
     }

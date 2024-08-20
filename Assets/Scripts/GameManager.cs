@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class GameManager
 {
-    private static int score = 0;
+    private static int score = 20;
 
     public static void AddScore(int points)
     {

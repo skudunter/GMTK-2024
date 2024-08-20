@@ -67,7 +67,6 @@ public static class SoundManager
                 PlaySound(clip1, position, volume);
                 break;
             case 1:
-                Debug.Log(clip2);
                 PlaySound(clip2, position, volume);
                 break;
             case 2:
