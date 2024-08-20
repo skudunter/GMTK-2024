@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class AsteroidSpawner : MonoBehaviour
 {
     [Header("Asteroid Prefabs")]
@@ -13,6 +12,11 @@ public class AsteroidSpawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private float baseSpawnRate = 1.0f; // Base time in seconds between spawns
     [SerializeField] private AnimationCurve spawnRateCurve; // Non-linear control for spawn rate
+
+    [Header("Asteroid Distribution")]
+    [SerializeField] private AnimationCurve normalAsteroidCurve; // Controls distribution of normal asteroids
+    [SerializeField] private AnimationCurve denseAsteroidCurve;  // Controls distribution of dense asteroids
+    [SerializeField] private AnimationCurve lightAsteroidCurve;  // Controls distribution of light asteroids
 
     private float screenWidth;
     private float screenHeight;
@@ -31,21 +35,20 @@ public class AsteroidSpawner : MonoBehaviour
     }
 
     private IEnumerator SpawnAsteroids()
-{
-    while (true)
     {
-        float adjustedSpawnRate = baseSpawnRate / spawnRateCurve.Evaluate(elapsedTime); // Inverse to make higher curve values faster
-        SpawnAsteroid();
-        yield return new WaitForSeconds(adjustedSpawnRate);
-        elapsedTime += Time.deltaTime; // Increment by time, not spawn rate, for consistency
+        while (true)
+        {
+            float adjustedSpawnRate = baseSpawnRate / spawnRateCurve.Evaluate(elapsedTime);
+            SpawnAsteroid();
+            yield return new WaitForSeconds(adjustedSpawnRate);
+            elapsedTime += Time.deltaTime;
+        }
     }
-}
-
 
     private void SpawnAsteroid()
     {
         Vector2 spawnPosition = GetRandomSpawnPosition();
-        GameObject asteroidPrefab = GetRandomAsteroidPrefab();
+        GameObject asteroidPrefab = GetAsteroidPrefabBasedOnDistribution();
         GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
         asteroid.transform.parent = transform;
 
@@ -58,33 +61,34 @@ public class AsteroidSpawner : MonoBehaviour
 
         switch (edge)
         {
-            case 0: // Left edge
-                return new Vector2(-screenWidth, Random.Range(-screenHeight, screenHeight));
-            case 1: // Right edge
-                return new Vector2(screenWidth, Random.Range(-screenHeight, screenHeight));
-            case 2: // Top edge
-                return new Vector2(Random.Range(-screenWidth, screenWidth), screenHeight);
-            case 3: // Bottom edge
-                return new Vector2(Random.Range(-screenWidth, screenWidth), -screenHeight);
-            default:
-                return Vector2.zero; // Fallback, shouldn't occur
+            case 0: return new Vector2(-screenWidth, Random.Range(-screenHeight, screenHeight)); // Left edge
+            case 1: return new Vector2(screenWidth, Random.Range(-screenHeight, screenHeight));  // Right edge
+            case 2: return new Vector2(Random.Range(-screenWidth, screenWidth), screenHeight);   // Top edge
+            case 3: return new Vector2(Random.Range(-screenWidth, screenWidth), -screenHeight);  // Bottom edge
+            default: return Vector2.zero; // Fallback, shouldn't occur
         }
     }
 
-    private GameObject GetRandomAsteroidPrefab()
+    private GameObject GetAsteroidPrefabBasedOnDistribution()
     {
-        int rand = Random.Range(0, 3);
+        float normalWeight = normalAsteroidCurve.Evaluate(elapsedTime);
+        float denseWeight = denseAsteroidCurve.Evaluate(elapsedTime);
+        float lightWeight = lightAsteroidCurve.Evaluate(elapsedTime);
 
-        switch (rand)
+        float totalWeight = normalWeight + denseWeight + lightWeight;
+        float randomValue = Random.Range(0, totalWeight);
+
+        if (randomValue <= normalWeight)
         {
-            case 0:
-                return normalAsteroidPrefab;
-            case 1:
-                return denseAsteroidPrefab;
-            case 2:
-                return lightAsteroidPrefab;
-            default:
-                return null; // Fallback, shouldn't occur
+            return normalAsteroidPrefab;
+        }
+        else if (randomValue <= normalWeight + denseWeight)
+        {
+            return denseAsteroidPrefab;
+        }
+        else
+        {
+            return lightAsteroidPrefab;
         }
     }
 
@@ -92,7 +96,6 @@ public class AsteroidSpawner : MonoBehaviour
     {
         AsteroidStats asteroidStats = asteroid.GetComponent<AsteroidStats>();
 
-        // Calculate a random inward direction with some randomness
         Vector2 finalDirection = CalculateDirectionToCenter(spawnPosition);
         Rigidbody2D asteroidRb = asteroid.GetComponent<Rigidbody2D>();
 
@@ -115,7 +118,7 @@ public class AsteroidSpawner : MonoBehaviour
     {
         float speed = Random.Range(asteroidStats.minVelocity, asteroidStats.maxVelocity);
         float size = Random.Range(asteroidStats.minSize, asteroidStats.maxSize);
-        asteroid.transform.Rotate(Random.Range(0,maxSpin),Random.Range(0,maxSpin), Random.Range(0, maxSpin));
+        asteroid.transform.Rotate(Random.Range(0, maxSpin), Random.Range(0, maxSpin), Random.Range(0, maxSpin));
         asteroid.transform.GetChild(0).transform.localScale = new Vector3(size, size, size);
         asteroidRb.angularVelocity = Random.Range(-maxSpin, maxSpin);
         asteroidRb.mass = size * asteroidStats.density;
