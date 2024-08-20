@@ -5,13 +5,17 @@ using UnityEngine;
 public class DestroyOnContactAndScaleBehavior : MonoBehaviour
 {
     private GravitationalAttraction gravitationalAttraction;
+
     [SerializeField]
     private float newScale;
+
     [SerializeField]
     private float newGravitationalConstantIncrement;
-    void Start() {
+
+    void Start()
+    {
         gravitationalAttraction = GetComponent<GravitationalAttraction>();
-     }
+    }
 
     void Update() { }
 
@@ -24,21 +28,27 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
         {
-            AbsorbAstroid();
-            Destroy(other.gameObject);
+            StartCoroutine(AbsorbAsteroid(other.gameObject));
         }
-          else if (other.gameObject.name == "asteroid")
+        else if (other.gameObject.name == "asteroid")
         {
-            AbsorbAstroid();
-            Destroy(other.gameObject);
+
+            StartCoroutine(AbsorbAsteroid(other.gameObject));
         }
     }
-    void AbsorbAstroid()
-    {
-        //TODO add score
-        //TODO make black hole grow more when absorbing bigger asteroids
+
+    
+    IEnumerator AbsorbAsteroid(GameObject other){
+        Animator animator = other.GetComponentInParent<Animator>();
+        if (animator != null)
+        {
+            animator.Play("asteroidDeath");
+        }
+        other.GetComponent<CircleCollider2D>().enabled = false;
+        other.GetComponentInParent<Rigidbody2D>().velocity /= 2;
+        yield return new WaitForSeconds(0.5f);
+        Destroy(other.gameObject);
         transform.localScale += new Vector3(newScale, newScale, newScale);
         gravitationalAttraction.IncrementGravitationalConstant(newGravitationalConstantIncrement);
-
     }
 }
