@@ -48,6 +48,6 @@ public static class GUI
         }
     }
     public static void ShowRestartScreen(){
-        GameObject.Find("RestartScreen").SetActive(true);
+        GameObject.Find("Restart").transform.GetChild(0).gameObject.SetActive(true);
     }
 }
