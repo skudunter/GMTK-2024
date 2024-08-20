@@ -47,4 +47,7 @@ public static class GUI
             }
         }
     }
+    public static void ShowRestartScreen(){
+        GameObject.Find("RestartScreen").SetActive(true);
+    }
 }

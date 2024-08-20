@@ -18,13 +18,24 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
     }
 
     void Update() { }
-
+    IEnumerator restartGame()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameManager.ShowRestartScreen();
+        Time.timeScale = 0;
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //TODO add gameover sequence
-            GameManager.RestartGame();
+            other.gameObject.GetComponent<Animator>().Play("asteroidDeath");
+            other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            other.gameObject.GetComponent<PlayerController>().enabled = false;
+            other.gameObject.GetComponent<ShootGrappleGun>().enabled = false;
+            other.gameObject.GetComponent<ShootLaser>().enabled = false;
+            var audioSource = GameObject.Find("AudioInitializer").GetComponent<AudioSource>().volume = 0.1f;
+ 
+            StartCoroutine(restartGame());
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
         {

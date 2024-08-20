@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class GameManager
 {
-    private static int score = 20;
+    private static int score = 0;
 
     public static void AddScore(int points)
     {
@@ -18,8 +18,17 @@ public static class GameManager
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public static void endGame()
+    {
+        // kill the game
+        Application.Quit();
+    }
     public static void DoScreenShake(float intensity)
     {
         Camera.main.GetComponent<ScreenShake>().Shake(intensity);
+    }
+    public static void ShowRestartScreen()
+    {
+        GUI.ShowRestartScreen();
     }
 }
