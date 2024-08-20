@@ -17,4 +17,8 @@ public static class GameManager
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public static void DoScreenShake(float intensity)
+    {
+        Camera.main.GetComponent<ScreenShake>().Shake(intensity);
+    }
 }
