@@ -68,6 +68,7 @@ public class ShootLaser : MonoBehaviour
                     && hit.collider.gameObject.layer == LayerMask.NameToLayer("Asteroids")
                 )
                 {
+                    SoundManager.PlayExplosionSound(hit.point);
                     Destroy(hit.collider.gameObject);
                     GameManager.AddScore(1);
                 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class WasInteracttedWith : MonoBehaviour
 {
     private bool wasInteracttedWith = false;
+
     // private SpriteRenderer spriteRenderer;
     // // private void Start()
     // // {
@@ -22,6 +23,7 @@ public class WasInteracttedWith : MonoBehaviour
     {
         this.wasInteracttedWith = wasInteracttedWith;
     }
+
     public bool GetWasInteracttedWith()
     {
         return wasInteracttedWith;
@@ -31,12 +33,15 @@ public class WasInteracttedWith : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+            SoundManager.PlayCollisionSound(transform.position);
             wasInteracttedWith = true;
         }
         WasInteracttedWith otherWasInteracttedWith =
             collision.gameObject.GetComponent<WasInteracttedWith>();
         if (otherWasInteracttedWith != null)
         {
+            //asteroid
+            SoundManager.PlayCollisionSound(transform.position);
             if (otherWasInteracttedWith.wasInteracttedWith)
             {
                 wasInteracttedWith = true;

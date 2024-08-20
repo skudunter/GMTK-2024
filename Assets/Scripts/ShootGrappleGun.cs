@@ -4,11 +4,6 @@ public class ShootGrappleGun : MonoBehaviour
 {
     private LineRenderer lineRenderer;
 
-    [SerializeField]
-    private float frequency = 1.5f;
-
-    [SerializeField]
-    private float dampingRatio = 0.7f;
     private Transform grapplePoint;
     private SpringJoint2D joint;
 
