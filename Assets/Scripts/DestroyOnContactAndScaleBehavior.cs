@@ -51,7 +51,20 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Destroy(other.gameObject);
         GameManager.DoScreenShake(other.GetComponentInParent<Rigidbody2D>().mass / 7);
-        transform.localScale += new Vector3(newScale, newScale, newScale);
+
+        Vector3 initialScale = transform.localScale;
+        Vector3 targetScale = initialScale + new Vector3(newScale, newScale, newScale);
+        float duration = 1f; // Time it takes to scale up
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            transform.localScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = targetScale; // Ensure the final scale is reached
         gravitationalAttraction.IncrementGravitationalConstant(newGravitationalConstantIncrement);
     }
 }
