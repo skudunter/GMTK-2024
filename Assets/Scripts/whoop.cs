@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class whoop : MonoBehaviour
+public class Whoop : MonoBehaviour
 {
-    public void enterGame(){
+    public void EnterGame(){
         Debug.Log("entered  game");
         SceneManager.LoadScene("Game");
     }

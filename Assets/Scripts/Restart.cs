@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Restart : MonoBehaviour
@@ -17,10 +18,10 @@ public class Restart : MonoBehaviour
     }
     public void RestartGame()
     {
-        GameManager.RestartGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void EndGame()
     {
-        GameManager.endGame();
+        Application.Quit();
     }
 }
