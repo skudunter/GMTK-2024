@@ -7,23 +7,19 @@ public class ShootGrappleGun : MonoBehaviour
     private Transform grapplePoint;
     private SpringJoint2D joint;
 
-
     [SerializeField]
     private float range = 100f;
 
     [SerializeField]
     private Transform firePoint;
 
-
-
     // Tractor beam
     [SerializeField]
     private float tractor_beam_desired_distance = 3.0f;
 
-  
     private bool tractor_beam_enabled = false;
     private bool tractor_beam_caught = false;
-    
+
     private float tractor_beam_time = 0.0f;
 
     [SerializeField]
@@ -32,12 +28,7 @@ public class ShootGrappleGun : MonoBehaviour
     [SerializeField]
     private float tractor_beam_force_pull = 10.0f;
 
-
-
-
-
     private GameObject player;
-    
 
     private GameObject asteroidManager;
     private GameObject closestAsteroid;
@@ -73,60 +64,65 @@ public class ShootGrappleGun : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             ReleaseGrapple();
-            
         }
 
-        if (!tractor_beam_enabled){
+        if (!tractor_beam_enabled)
+        {
             closestAsteroid = GetClosestAsteroid();
         }
 
         if (closestAsteroid != null)
         {
-
             // play animation when asteroid is close
             Animator animator = closestAsteroid.GetComponent<Animator>();
             if (animator.GetCurrentAnimatorClipInfo(0).Length == 0)
             {
-               animator.Play("ping");
+                animator.Play("ping");
             }
-
 
             // Apply tractor beam force
-            if (tractor_beam_enabled){
-
+            if (tractor_beam_enabled)
+            {
                 // Set rope thickness based on held time.
-                lineRenderer.startWidth = 0.15f*Mathf.Min(1.0f,tractor_beam_time/3.0f);
-                lineRenderer.endWidth = 0.15f*Mathf.Min(1.0f,tractor_beam_time/3.0f);
-
-
+                lineRenderer.startWidth = 0.15f * Mathf.Min(1.0f, tractor_beam_time / 2.0f);
+                lineRenderer.endWidth = 0.15f * Mathf.Min(1.0f, tractor_beam_time / 2.0f);
 
                 Rigidbody2D asteroidRb = closestAsteroid.GetComponent<Rigidbody2D>();
-                Vector2 desiredPos = player.transform.position + player.transform.up*tractor_beam_desired_distance;
+                Vector2 desiredPos =
+                    player.transform.position + player.transform.up * tractor_beam_desired_distance;
                 float distance = Vector2.Distance(desiredPos, asteroidRb.position);
 
-                if (distance < 0.4){
-                    asteroidRb.MovePosition(desiredPos); 
+                if (distance < 0.4)
+                {
+                    asteroidRb.MovePosition(desiredPos);
                     tractor_beam_caught = true;
                 }
-                else{
-                    if (tractor_beam_caught){
-                        asteroidRb.MovePosition(desiredPos); 
+                else
+                {
+                    if (tractor_beam_caught)
+                    {
+                        asteroidRb.MovePosition(desiredPos);
                     }
-                    else{
-                        asteroidRb.velocity = (desiredPos-asteroidRb.position).normalized*tractor_beam_force_pull;
+                    else
+                    {
+                        asteroidRb.velocity =
+                            (desiredPos - asteroidRb.position).normalized * tractor_beam_force_pull;
                     }
                 }
-                
-                tractor_beam_time += Time.deltaTime;
-                DrawRope(); 
-            }
 
+                tractor_beam_time += Time.deltaTime;
+                if (tractor_beam_time > 2.0f)
+                {
+                    ReleaseGrapple();
+                }
+                DrawRope();
+            }
         }
-        else{
+        else
+        {
             lineRenderer.enabled = false;
             tractor_beam_enabled = false;
             tractor_beam_caught = false;
-            
         }
     }
 
@@ -148,7 +144,6 @@ public class ShootGrappleGun : MonoBehaviour
 
         if (closestAsteroid != null)
         {
-            
             // Track interaction
             WasInteracttedWith wasInteracttedWith =
                 closestAsteroid.GetComponent<WasInteracttedWith>();
@@ -156,8 +151,7 @@ public class ShootGrappleGun : MonoBehaviour
             {
                 wasInteracttedWith.SetWasInteracttedWith(true);
             }
-            
-            
+
             grapplePoint = closestAsteroid.transform;
 
             // Draw tractor beam
@@ -174,20 +168,23 @@ public class ShootGrappleGun : MonoBehaviour
 
         if (closestAsteroid != null)
         {
-
             Rigidbody2D asteroidRb = closestAsteroid.GetComponent<Rigidbody2D>();
-            
+
             Vector2 playerPos = player.transform.position;
-            Vector2 forceVector = tractor_beam_force_push*(asteroidRb.position-playerPos).normalized*Mathf.Min(1.0f,tractor_beam_time/3.0f);
-            asteroidRb.velocity = tractor_beam_force_push*(asteroidRb.position-playerPos).normalized*Mathf.Min(1.0f,tractor_beam_time/3.0f);
+            Vector2 forceVector =
+                tractor_beam_force_push
+                * (asteroidRb.position - playerPos).normalized
+                * Mathf.Min(1.0f, tractor_beam_time / 3.0f);
+            asteroidRb.velocity =
+                tractor_beam_force_push
+                * (asteroidRb.position - playerPos).normalized
+                * Mathf.Min(1.0f, tractor_beam_time / 3.0f);
 
             closestAsteroid = null;
             tractor_beam_enabled = false;
             tractor_beam_caught = false;
             tractor_beam_time = 0.0f;
         }
-
-        
     }
 
     private GameObject GetClosestAsteroid()
