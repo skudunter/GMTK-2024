@@ -1,22 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class AsteroidSpawner : MonoBehaviour
 {
     [Header("Asteroid Prefabs")]
-    [SerializeField] private GameObject normalAsteroidPrefab;
-    [SerializeField] private GameObject denseAsteroidPrefab;
-    [SerializeField] private GameObject lightAsteroidPrefab;
-    [SerializeField] private float maxSpin = 100.0f;
+    [SerializeField]
+    private GameObject normalAsteroidPrefab;
+
+    [SerializeField]
+    private GameObject denseAsteroidPrefab;
+
+    [SerializeField]
+    private GameObject lightAsteroidPrefab;
+
+    [SerializeField]
+    private float maxSpin = 100.0f;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float baseSpawnRate = 1.0f; // Base time in seconds between spawns
-    [SerializeField] private AnimationCurve spawnRateCurve; // Non-linear control for spawn rate
+    [SerializeField]
+    private float baseSpawnRate = 1.0f; // Base time in seconds between spawns
+
+    [SerializeField]
+    private AnimationCurve spawnRateCurve; // Non-linear control for spawn rate
 
     [Header("Asteroid Distribution")]
-    [SerializeField] private AnimationCurve normalAsteroidCurve; // Controls distribution of normal asteroids
-    [SerializeField] private AnimationCurve denseAsteroidCurve;  // Controls distribution of dense asteroids
-    [SerializeField] private AnimationCurve lightAsteroidCurve;  // Controls distribution of light asteroids
+    [SerializeField]
+    private AnimationCurve normalAsteroidCurve; // Controls distribution of normal asteroids
+
+    [SerializeField]
+    private AnimationCurve denseAsteroidCurve; // Controls distribution of dense asteroids
+
+    [SerializeField]
+    private AnimationCurve lightAsteroidCurve; // Controls distribution of light asteroids
 
     private float screenWidth;
     private float screenHeight;
@@ -61,11 +77,16 @@ public class AsteroidSpawner : MonoBehaviour
 
         switch (edge)
         {
-            case 0: return new Vector2(-screenWidth, Random.Range(-screenHeight, screenHeight)); // Left edge
-            case 1: return new Vector2(screenWidth, Random.Range(-screenHeight, screenHeight));  // Right edge
-            case 2: return new Vector2(Random.Range(-screenWidth, screenWidth), screenHeight);   // Top edge
-            case 3: return new Vector2(Random.Range(-screenWidth, screenWidth), -screenHeight);  // Bottom edge
-            default: return Vector2.zero; // Fallback, shouldn't occur
+            case 0:
+                return new Vector2(-screenWidth, Random.Range(-screenHeight, screenHeight)); // Left edge
+            case 1:
+                return new Vector2(screenWidth, Random.Range(-screenHeight, screenHeight)); // Right edge
+            case 2:
+                return new Vector2(Random.Range(-screenWidth, screenWidth), screenHeight); // Top edge
+            case 3:
+                return new Vector2(Random.Range(-screenWidth, screenWidth), -screenHeight); // Bottom edge
+            default:
+                return Vector2.zero; // Fallback, shouldn't occur
         }
     }
 
@@ -114,11 +135,20 @@ public class AsteroidSpawner : MonoBehaviour
         return finalDirection;
     }
 
-    private void ApplyAsteroidPhysics(GameObject asteroid, Rigidbody2D asteroidRb, AsteroidStats asteroidStats, Vector2 finalDirection)
+    private void ApplyAsteroidPhysics(
+        GameObject asteroid,
+        Rigidbody2D asteroidRb,
+        AsteroidStats asteroidStats,
+        Vector2 finalDirection
+    )
     {
         float speed = Random.Range(asteroidStats.minVelocity, asteroidStats.maxVelocity);
         float size = Random.Range(asteroidStats.minSize, asteroidStats.maxSize);
-        asteroid.transform.Rotate(Random.Range(0, maxSpin), Random.Range(0, maxSpin), Random.Range(0, maxSpin));
+        asteroid.transform.Rotate(
+            Random.Range(0, maxSpin),
+            Random.Range(0, maxSpin),
+            Random.Range(0, maxSpin)
+        );
         asteroid.transform.GetChild(0).transform.localScale = new Vector3(size, size, size);
         asteroidRb.angularVelocity = Random.Range(-maxSpin, maxSpin);
         asteroidRb.mass = size * asteroidStats.density;

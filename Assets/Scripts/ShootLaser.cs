@@ -7,6 +7,9 @@ public class ShootLaser : MonoBehaviour
     private LineRenderer lineRenderer;
     private GameObject laserFirePoint;
 
+    [SerializeField]
+    private GameObject asteroidDeathParticles;
+
     void Start()
     {
         laserFirePoint = GameObject.Find("LaserFirePoint");
@@ -63,19 +66,29 @@ public class ShootLaser : MonoBehaviour
             {
                 if (
                     hit.collider != null
-                    && hit.collider.gameObject.layer == LayerMask.NameToLayer("Asteroids") && hit.collider.gameObject.name == "asteroid"
+                    && hit.collider.gameObject.layer == LayerMask.NameToLayer("Asteroids")
+                    && hit.collider.gameObject.name == "asteroid"
                 )
                 {
-                    Debug.Log(hit.collider.gameObject.name);
                     SoundManager.PlayExplosionSound(hit.point);
-                    hit.collider.gameObject.SetActive(false);
-                    hit.collider.gameObject.transform.parent.transform.GetChild(1).gameObject.SetActive(true);
-                    Destroy(hit.collider.gameObject.transform.parent.gameObject,2);
+                    GameObject particles = Instantiate(
+                        asteroidDeathParticles,
+                        hit.collider.gameObject.transform.position,
+                        Quaternion.identity
+                    );
+                    particles.transform.GetChild(0).localScale = new Vector3(
+                        hit.collider.gameObject.transform.localScale.x,
+                        hit.collider.gameObject.transform.localScale.y,
+                        1
+                    );
+                    particles.GetComponentInChildren<ParticleSystem>().GetComponent<Renderer>().material = hit.collider.gameObject.GetComponent<MeshRenderer>().material;
+                    Destroy(hit.collider.gameObject.transform.parent.gameObject);
+                    Destroy(particles, 1.8f);
                     GameManager.AddScore(1);
                 }
             }
         }
-        
+
         lineRenderer.SetPosition(
             1,
             laserFirePoint.transform.position + laserFirePoint.transform.up * maxLaserDistance

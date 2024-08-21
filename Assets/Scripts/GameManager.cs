@@ -25,7 +25,7 @@ public static class GameManager
         Time.timeScale = 1;
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         score = 0;
-        GUI.updateScore(-4);
+        GUI.updateScore(score);
         GUI.HideRestartScreen();
 
         GameObject asteroid = GameObject.Find("AsteroidManager");
