@@ -18,7 +18,7 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
     }
 
     void Update() { }
-    IEnumerator restartGame()
+    IEnumerator ShowRestartScreen()
     {
         yield return new WaitForSeconds(0.5f);
         GameManager.ShowRestartScreen();
@@ -28,14 +28,9 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            other.gameObject.GetComponent<Animator>().Play("asteroidDeath");
-            other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            other.gameObject.GetComponent<PlayerController>().enabled = false;
-            other.gameObject.GetComponent<ShootGrappleGun>().enabled = false;
-            other.gameObject.GetComponent<ShootLaser>().enabled = false;
-            var audioSource = GameObject.Find("AudioInitializer").GetComponent<AudioSource>().volume = 0.1f;
- 
-            StartCoroutine(restartGame());
+          
+            GameManager.KillPlayer();
+            StartCoroutine(ShowRestartScreen());
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
         {

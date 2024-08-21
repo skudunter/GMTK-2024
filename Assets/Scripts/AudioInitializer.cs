@@ -8,6 +8,7 @@ public class AudioInitializer : MonoBehaviour
     void Start()
     {
        SoundManager.Init(); 
+       GameManager.Init();
     }
 
 }

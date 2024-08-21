@@ -1447,6 +1447,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.08627451
       objectReference: {fileID: 0}
+    - target: {fileID: 5129944360651778519, guid: 3032ad3f9ada44e60adb2c670beadfd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5499384525842083722, guid: 3032ad3f9ada44e60adb2c670beadfd2, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1554,14 +1558,14 @@ PrefabInstance:
     - target: {fileID: 5631968866203331794, guid: 3032ad3f9ada44e60adb2c670beadfd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 338112987}
+      objectReference: {fileID: 11500000, guid: bbce40936e2409f48a68baea86bf6d0a, type: 3}
     - target: {fileID: 5631968866203331794, guid: 3032ad3f9ada44e60adb2c670beadfd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5631968866203331794, guid: 3032ad3f9ada44e60adb2c670beadfd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5631968866203331794, guid: 3032ad3f9ada44e60adb2c670beadfd2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

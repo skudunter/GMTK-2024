@@ -22,6 +22,6 @@ public class Restart : MonoBehaviour
     }
     public void EndGame()
     {
-        Application.Quit();
+       GameManager.KillApplication();
     }
 }

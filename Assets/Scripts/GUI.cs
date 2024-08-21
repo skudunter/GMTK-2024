@@ -7,7 +7,14 @@ public static class GUI
 {
     public static float laserCharge = 0;
     private static GameObject scoreText = GameObject.Find("ScoreText");
-    private static GameObject laserChargeIndicator = GameObject.Find("LaserChargeIndicator");
+    private static readonly GameObject laserChargeIndicator = GameObject.Find(
+        "LaserChargeIndicator"
+    );
+
+    private static GameObject restartScreen = GameObject
+        .Find("Restart")
+        .transform.GetChild(0)
+        .gameObject;
 
     public static void updateScore(float score)
     {
@@ -47,10 +54,14 @@ public static class GUI
             }
         }
     }
-    public static void ShowRestartScreen(){
-        GameObject.Find("Restart").transform.GetChild(0).gameObject.SetActive(true);
+
+    public static void ShowRestartScreen()
+    {
+        restartScreen.SetActive(true);
     }
-    public static void HideRestartScreen(){
-        GameObject.Find("Restart").transform.GetChild(0).gameObject.SetActive(false);
+
+    public static void HideRestartScreen()
+    {
+        restartScreen.SetActive(false);
     }
 }
