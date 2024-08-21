@@ -18,17 +18,25 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
     }
 
     void Update() { }
+
     IEnumerator ShowRestartScreen()
     {
-        yield return new WaitForSeconds(0.5f);
-        GameManager.ShowRestartScreen();
-        Time.timeScale = 0;
+        while (isPaused == false)
+        {
+            yield return new WaitForSeconds(0.5f);
+            isPaused = true;
+            GUI.ShowRestartScreen();
+            GameManager.PauseGame();
+        }
+        StopCoroutine(ShowRestartScreen());
     }
+
+    public bool isPaused = false;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-          
             GameManager.KillPlayer();
             StartCoroutine(ShowRestartScreen());
         }

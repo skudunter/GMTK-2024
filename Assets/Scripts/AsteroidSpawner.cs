@@ -19,7 +19,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     [Header("Spawn Settings")]
     [SerializeField]
-    private float baseSpawnRate = 1.0f; // Base time in seconds between spawns
+    public float baseSpawnRate = 1.0f; // Base time in seconds between spawns
 
     [SerializeField]
     private AnimationCurve spawnRateCurve; // Non-linear control for spawn rate
@@ -37,6 +37,7 @@ public class AsteroidSpawner : MonoBehaviour
     private float screenWidth;
     private float screenHeight;
     private float elapsedTime = 0f;
+    public bool isPaused = false;
 
     private void Start()
     {
@@ -49,16 +50,25 @@ public class AsteroidSpawner : MonoBehaviour
         screenWidth = Camera.main.orthographicSize * Camera.main.aspect;
         screenHeight = Camera.main.orthographicSize;
     }
-
     private IEnumerator SpawnAsteroids()
     {
-        while (true)
+        while (isPaused == false)
         {
             float adjustedSpawnRate = baseSpawnRate / spawnRateCurve.Evaluate(elapsedTime);
             SpawnAsteroid();
             yield return new WaitForSeconds(adjustedSpawnRate);
             elapsedTime += Time.deltaTime;
         }
+    }
+    public void PauseSpawner()
+    {
+        isPaused = true;
+    }
+
+    public void ResumeSpawner()
+    {
+        isPaused = false;
+        // StartCoroutine(SpawnAsteroids());
     }
 
     private void SpawnAsteroid()
