@@ -50,4 +50,7 @@ public static class GUI
     public static void ShowRestartScreen(){
         GameObject.Find("Restart").transform.GetChild(0).gameObject.SetActive(true);
     }
+    public static void HideRestartScreen(){
+        GameObject.Find("Restart").transform.GetChild(0).gameObject.SetActive(false);
+    }
 }

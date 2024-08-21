@@ -16,7 +16,29 @@ public static class GameManager
 
     public static void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject player = GameObject.Find("Player");
+        player.transform.position = new Vector3(0, 5, 0);
+        player.GetComponent<PlayerController>().enabled = true;
+        player.GetComponent<ShootGrappleGun>().enabled = true;
+        player.GetComponent<ShootLaser>().enabled = true;
+        player.GetComponent<Animator>().Play("New State");
+        Time.timeScale = 1;
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        score = 0;
+        GUI.updateScore(-4);
+        GUI.HideRestartScreen();
+
+        GameObject asteroid = GameObject.Find("AsteroidManager");
+
+        foreach (Transform child in asteroid.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        GameObject vortex = GameObject.Find("Vortex");
+        vortex.GetComponent<GravitationalAttraction>().gravitationalConstant = 1f;
+        vortex.transform.localScale = new Vector3(1, 1, 1);
+
+
     }
     public static void endGame()
     {

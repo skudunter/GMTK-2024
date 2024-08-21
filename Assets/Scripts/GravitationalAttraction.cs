@@ -5,7 +5,7 @@ using UnityEngine;
 public class GravitationalAttraction : MonoBehaviour
 {
     [SerializeField]
-    private float gravitationalConstant = 0.1f;
+    public float gravitationalConstant = 0.1f;
     public float playerScale = 15f;
     private GameObject player;
     private Rigidbody2D playerRb;
