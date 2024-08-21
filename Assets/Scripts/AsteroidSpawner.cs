@@ -63,12 +63,14 @@ public class AsteroidSpawner : MonoBehaviour
     public void PauseSpawner()
     {
         isPaused = true;
+        StopAllCoroutines();
     }
 
     public void ResumeSpawner()
     {
         isPaused = false;
-        // StartCoroutine(SpawnAsteroids());
+        elapsedTime = 0f;
+        StartCoroutine(SpawnAsteroids());
     }
 
     private void SpawnAsteroid()

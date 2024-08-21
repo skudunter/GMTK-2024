@@ -471,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newScale: 0.3
   newGravitationalConstantIncrement: 0.3
+  isPaused: 0
 --- !u!1001 &473500391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1588,8 +1589,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0053482056
-      value: 0.48051453
+      time: 0
+      value: 0.23808289
       inSlope: 0.2833345
       outSlope: 0.2833345
       tangentMode: 0
@@ -1597,13 +1598,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.21441966
     - serializedVersion: 3
-      time: 0.46064278
-      value: 0.5811718
-      inSlope: 0.03812774
-      outSlope: 0.03812774
+      time: 0.6050291
+      value: 0.44263726
+      inSlope: 0.7403743
+      outSlope: 0.7403743
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.19568993
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.99224854
