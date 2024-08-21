@@ -31,6 +31,8 @@ public static class GameManager
 
     public static void RestartGame()
     {
+        Cursor.visible = false; 
+
         player.GetComponent<Animator>().Play("New State");
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Rigidbody2D>().angularVelocity = 0;
@@ -83,6 +85,7 @@ public static class GameManager
 
     public static void PauseGame()
     {
+        Cursor.visible = true;
         vortex.GetComponent<GravitationalAttraction>().gravitationalConstant = 0f;
         asteroidManager.GetComponent<AsteroidSpawner>().PauseSpawner();
         player.transform.GetChild(0).gameObject.SetActive(false);

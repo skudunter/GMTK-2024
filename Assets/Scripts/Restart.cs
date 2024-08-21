@@ -8,7 +8,8 @@ public class Restart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       // hide the mouse
+        Cursor.visible = false; 
     }
 
     // Update is called once per frame
