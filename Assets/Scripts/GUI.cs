@@ -10,10 +10,10 @@ public static class GUI
     private static readonly GameObject laserChargeIndicator = GameObject.Find(
         "LaserChargeIndicator"
     );
-    private static GameObject restartScreen = GameObject.Find("Restart");
-    private static GameObject highScoreText = restartScreen.transform.GetChild(1).gameObject;
+    private static GameObject restartScreen = GameObject.Find("RestartMenu");
+    private static GameObject highScoreText = GameObject.Find("HighScoreText");
 
-    private static GameObject titleText = restartScreen.transform.GetChild(0).gameObject;
+    private static GameObject titleText = GameObject.Find("Title");
 
     public static void Init()
     {
