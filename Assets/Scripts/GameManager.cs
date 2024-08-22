@@ -24,6 +24,14 @@ public static class GameManager
 
     public static void KillPlayer()
     {
+        int score = ReadHighScore();
+        if (GameManager.score > score)
+        {
+            WriteHighScore(GameManager.score);
+        }
+        GUI.UpdateHighScore(ReadHighScore());
+        GUI.UpdateTitleText(ReadTitle());
+
         player.GetComponent<Animator>().Play("asteroidDeath");
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerController>().enabled = false;
@@ -90,6 +98,19 @@ public static class GameManager
         var score = int.Parse(File.ReadAllLines("Assets/Textfiles/highscore.txt")[0]);
         return score;
         // read a text file
+    }
+
+    static void WriteHighScore(int score)
+    {
+        File.WriteAllText("Assets/Textfiles/highscore.txt", score.ToString());
+        // write to a text file
+    }
+
+    static string ReadTitle()
+    {
+        var lines = File.ReadAllLines("Assets/Textfiles/insults.txt");
+        int rand = UnityEngine.Random.Range(0, lines.Length);
+        return lines[rand];
     }
 
     public static void PauseGame()

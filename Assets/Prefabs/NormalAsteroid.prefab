@@ -5041,9 +5041,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minVelocity: 2
-  maxVelocity: 5
+  maxVelocity: 3
   density: 1.28
-  minSize: 0.5
+  minSize: 1
   maxSize: 2
 --- !u!1001 &6330232374331403403
 PrefabInstance:

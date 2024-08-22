@@ -5009,10 +5009,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minVelocity: 4
-  maxVelocity: 7
+  maxVelocity: 5
   density: 0.5
   minSize: 0.3
-  maxSize: 2
+  maxSize: 1.42
 --- !u!1 &7880925044429629997
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,11 +10,23 @@ public static class GUI
     private static readonly GameObject laserChargeIndicator = GameObject.Find(
         "LaserChargeIndicator"
     );
+    private static GameObject restartScreen = GameObject.Find("Restart");
+    private static GameObject highScoreText = restartScreen.transform.GetChild(1).gameObject;
 
-    private static GameObject restartScreen = GameObject
-        .Find("Restart")
-        .transform.GetChild(0)
-        .gameObject;
+    private static GameObject titleText = restartScreen.transform.GetChild(0).gameObject;
+
+    public static void Init()
+    {
+        if (restartScreen != null)
+        {
+            restartScreen.SetActive(false);
+        }
+    }
+
+    public static void UpdateTitleText(string title)
+    {
+        titleText.GetComponent<TextMeshProUGUI>().text = title;
+    }
 
     public static void updateScore(float score)
     {
@@ -24,6 +36,11 @@ public static class GUI
             return;
         }
         scoreText.GetComponent<TextMeshProUGUI>().text = score.ToString();
+    }
+
+    public static void UpdateHighScore(float score)
+    {
+        highScoreText.GetComponent<TextMeshProUGUI>().text = "Highscore: " + score.ToString();
     }
 
     public static void updateLaserCharge(float change)

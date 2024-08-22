@@ -5040,11 +5040,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1abb82fd0f5cca47a22af9be93bb767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minVelocity: 1.59
-  maxVelocity: 3
+  minVelocity: 1
+  maxVelocity: 2
   density: 5
   minSize: 2
-  maxSize: 4
+  maxSize: 3.15
 --- !u!1001 &6111982846110842105
 PrefabInstance:
   m_ObjectHideFlags: 0

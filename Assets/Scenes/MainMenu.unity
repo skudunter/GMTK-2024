@@ -469,8 +469,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 822696377}
-        m_TargetAssemblyTypeName: Restart, Assembly-CSharp
+      - m_Target: {fileID: 822696380}
+        m_TargetAssemblyTypeName: CustomSceneManager, Assembly-CSharp
         m_MethodName: TransitionToGame
         m_Mode: 1
         m_Arguments:
@@ -663,8 +663,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 822696378}
-  - component: {fileID: 822696377}
   - component: {fileID: 822696379}
+  - component: {fileID: 822696380}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -672,18 +672,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &822696377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822696376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca4ff7c4233d1aa4ea6467da6ec307dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &822696378
 Transform:
   m_ObjectHideFlags: 0
@@ -709,6 +697,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94dbcd47de583fd4e9e163689e873da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &822696380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822696376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57a13933f070f74a93dfa83afebb305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1092853921
