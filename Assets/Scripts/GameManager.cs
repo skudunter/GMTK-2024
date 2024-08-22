@@ -30,7 +30,6 @@ public static class GameManager
             WriteHighScore(GameManager.score);
         }
         GUI.UpdateHighScore(ReadHighScore());
-        GUI.UpdateTitleText(ReadTitle());
 
         player.GetComponent<Animator>().Play("asteroidDeath");
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -115,6 +114,8 @@ public static class GameManager
 
     public static void PauseGame()
     {
+        GUI.UpdateTitleText(ReadTitle());
+
         Cursor.visible = true;
         vortex.GetComponent<GravitationalAttraction>().gravitationalConstant = 0f;
         asteroidManager.GetComponent<AsteroidSpawner>().PauseSpawner();
