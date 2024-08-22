@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.IO;
+using TMPro;
 
 public static class GameManager
 {
@@ -31,7 +34,7 @@ public static class GameManager
 
     public static void RestartGame()
     {
-        Cursor.visible = false; 
+        Cursor.visible = false;
 
         player.GetComponent<Animator>().Play("New State");
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -43,7 +46,6 @@ public static class GameManager
         player.GetComponent<ShootLaser>().enabled = true;
         player.transform.GetChild(0).gameObject.SetActive(true);
         player.transform.GetChild(4).gameObject.SetActive(true);
-        
 
         audioInitializer.GetComponent<AudioSource>().volume = 1f;
 
@@ -83,6 +85,13 @@ public static class GameManager
         Camera.main.GetComponent<ScreenShake>().Shake(intensity);
     }
 
+    static int ReadHighScore()
+    {
+        var score = int.Parse(File.ReadAllLines("Assets/Textfiles/highscore.txt")[0]);
+        return score;
+        // read a text file
+    }
+
     public static void PauseGame()
     {
         Cursor.visible = true;
@@ -90,7 +99,6 @@ public static class GameManager
         asteroidManager.GetComponent<AsteroidSpawner>().PauseSpawner();
         player.transform.GetChild(0).gameObject.SetActive(false);
         player.transform.GetChild(4).gameObject.SetActive(false);
-
 
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
 

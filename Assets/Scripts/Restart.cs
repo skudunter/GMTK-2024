@@ -8,21 +8,25 @@ public class Restart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // hide the mouse
-        Cursor.visible = false; 
+        // hide the mouse
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
+
     public void RestartGame()
     {
         GameManager.RestartGame();
     }
+
     public void EndGame()
     {
-       GameManager.KillApplication();
+        GameManager.KillApplication();
+    }
+
+    public void TransitionToGame()
+    {
+        SceneManager.LoadScene("Game");
     }
 }
