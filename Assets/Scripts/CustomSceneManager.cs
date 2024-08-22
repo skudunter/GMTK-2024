@@ -30,4 +30,9 @@ public class CustomSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+
+    public void TransitionToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

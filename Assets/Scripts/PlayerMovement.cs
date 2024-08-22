@@ -59,7 +59,5 @@ public class PlayerController : MonoBehaviour
 
         // Apply drag to velocity
         rb.velocity *= drag;
-
-        
     }
 }

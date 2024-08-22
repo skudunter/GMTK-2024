@@ -25,6 +25,7 @@ public class DestroyOnContactAndScaleBehavior : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             isPaused = true;
+            
             GUI.ShowRestartScreen();
             GameManager.PauseGame();
         }
