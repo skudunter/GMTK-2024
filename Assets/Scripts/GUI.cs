@@ -7,7 +7,7 @@ public static class GUI
 {
     public static float laserCharge = 0;
     private static GameObject scoreText = GameObject.Find("ScoreText");
-    private static readonly GameObject laserChargeIndicator = GameObject.Find(
+    private static  GameObject laserChargeIndicator = GameObject.Find(
         "LaserChargeIndicator"
     );
     private static GameObject restartScreen = GameObject.Find("RestartMenu");
@@ -17,6 +17,11 @@ public static class GUI
 
     public static void Init()
     {
+        // scoreText = GameObject.Find("ScoreText");
+        // laserChargeIndicator = GameObject.Find("LaserChargeIndicator");
+        // restartScreen = GameObject.Find("RestartMenu");
+        // highScoreText = GameObject.Find("HighScoreText");
+        // titleText = GameObject.Find("Title");
         if (restartScreen != null)
         {
             restartScreen.SetActive(false);
@@ -25,6 +30,11 @@ public static class GUI
 
     public static void UpdateTitleText(string title)
     {
+        if (!titleText)
+        {
+            Debug.Log("Title text not initialized lol");
+            return;
+        }
         titleText.GetComponent<TextMeshProUGUI>().text = title;
     }
 
@@ -40,6 +50,11 @@ public static class GUI
 
     public static void UpdateHighScore(float score)
     {
+        if (highScoreText == null)
+        {
+            Debug.Log("Highscore text not initialized lol");
+            return;
+        }
         highScoreText.GetComponent<TextMeshProUGUI>().text = "Highscore: " + score.ToString();
     }
 

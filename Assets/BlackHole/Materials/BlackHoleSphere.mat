@@ -25,11 +25,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _EdgePower: 135.18
+    - _EdgePower: 0.93
     - _HolePower: 51.93
     - _HoleSize: 0.15
-    - _Power: 23.56
+    - _Power: 3.04
     m_Colors:
-    - _Center: {r: 0, g: 0, b: 48.2, a: 1}
-    - _Color: {r: 0.9528302, g: 0, b: 0.9263137, a: 1}
+    - _Center: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   m_BuildTextureStacks: []

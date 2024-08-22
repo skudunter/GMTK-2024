@@ -94,20 +94,47 @@ public static class GameManager
 
     static int ReadHighScore()
     {
-        var score = int.Parse(File.ReadAllLines("Assets/Textfiles/highscore.txt")[0]);
+        string filePath = "Assets/Textfiles/highscore.txt";
+
+        // Check if the file exists, if not, create it with a default score of 0
+        if (!File.Exists(filePath))
+        {
+            File.WriteAllText(filePath, "0");
+        }
+
+        // Read the score from the file
+        var score = int.Parse(File.ReadAllLines(filePath)[0]);
         return score;
-        // read a text file
     }
 
     static void WriteHighScore(int score)
     {
-        File.WriteAllText("Assets/Textfiles/highscore.txt", score.ToString());
-        // write to a text file
+        string filePath = "Assets/Textfiles/highscore.txt";
+
+        // Check if the directory exists, if not, create it
+        string directoryPath = Path.GetDirectoryName(filePath);
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        // Write the score to the file
+        File.WriteAllText(filePath, score.ToString());
     }
 
     static string ReadTitle()
     {
-        var lines = File.ReadAllLines("Assets/Textfiles/insults.txt");
+        string filePath = "Assets/Textfiles/insults.txt";
+
+        // Check if the file exists, if not, create it with some default lines
+        if (!File.Exists(filePath))
+        {
+            string[] defaultLines = { "L", "SKill Issue" };
+            File.WriteAllLines(filePath, defaultLines);
+        }
+
+        // Read a random line from the file
+        var lines = File.ReadAllLines(filePath);
         int rand = UnityEngine.Random.Range(0, lines.Length);
         return lines[rand];
     }
